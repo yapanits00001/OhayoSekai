@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "61292664901",
+    "project_id": "dhvsu-deals",
+    "storage_bucket": "dhvsu-deals.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:61292664901:android:e2db123bd03ec1745c2b2c",
+        "android_client_info": {
+          "package_name": "com.DhvsuDeals.ohayosekai"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "61292664901-a3okonh5ujq00q9gjc01cv0ta0ccmbrj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB3bkmFhBGPYlxcfALc_FS9IvkN1DN7pNg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "61292664901-a3okonh5ujq00q9gjc01cv0ta0ccmbrj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

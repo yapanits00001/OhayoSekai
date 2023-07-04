@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="Matcha_Light">#CCD5AE</color>
+    <color name="Matcha_Lighter">#E9EDC9</color>
+    <color name="Milk">#FEFAE0</color>
+    <color name="Cream">#FAEDCD</color>
+    <color name="Creamy_Brown">#D4A373</color>
+</resources>
