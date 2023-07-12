@@ -8,4 +8,5 @@
     <string name="Fname">Full Name</string>
     <string name="SignUp">Sign-Up\n</string>
     <string name="MemAUTH">Member Authentication\n</string>
+    <string name="confirm_password">Confirm Password</string>
 </resources>
