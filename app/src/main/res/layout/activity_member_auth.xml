@@ -7,7 +7,7 @@
     android:gravity="center"
     android:orientation="vertical"
     android:padding="20dp"
-    tools:context=".RegisterActivity">
+    tools:context=".MemberAuthActivity">
 
 
     <TextView
@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="casual"
         android:gravity="center"
-        android:text="@string/SignUp"
+        android:text="@string/MemAUTH"
         android:textSize="30sp"
         android:textStyle="bold" />
 

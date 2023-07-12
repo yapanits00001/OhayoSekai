@@ -72,6 +72,18 @@ public class RegisterActivity extends AppCompatActivity {
                     return;
                 }
 
+                /*mAuth.signInWithEmailAndPassword(Click_email, Click_password)
+                        .addOnCompleteListener( new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                ProgBar.setVisibility(View.GONE);
+                                if (task.isSuccessful()) {
+                                    Toast.makeText(RegisterActivity.this, "Account Already Exist!!!", Toast.LENGTH_SHORT).show();
+                                    return;
+                                }
+                            }
+                        });*/
+
                 mAuth.createUserWithEmailAndPassword(Click_email, Click_password)
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
