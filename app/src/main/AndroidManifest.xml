@@ -15,6 +15,9 @@
         android:theme="@style/Theme.Material3.DayNight"
         tools:targetApi="31">
         <activity
+            android:name=".SampleFragmentedLayoutMain"
+            android:exported="false" />
+        <activity
             android:name=".FingerPrintActivity"
             android:exported="false" />
         <activity

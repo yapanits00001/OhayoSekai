@@ -2,6 +2,7 @@ package com.DhvsuDeals.ohayosekai;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -15,11 +16,12 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
     private FirebaseAuth Auth;
-    private Button btnLogOut;
+    private Button btnLogOut, btnFragment_Crud;
     private ProgressBar ProgBar;
     private TextView View_Account;
     private FirebaseUser User;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
         Auth = FirebaseAuth.getInstance();
         btnLogOut = findViewById(R.id.btnLogOut);
+        btnFragment_Crud = findViewById(R.id.SwtchFragmentLYT);
         View_Account = findViewById(R.id.ViewAccount);
         User = Auth.getCurrentUser();
 
@@ -47,5 +50,15 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        btnFragment_Crud.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent Go_Crud = new Intent(getApplicationContext(), SampleFragmentedLayoutMain.class);
+                startActivity(Go_Crud);
+                finish();
+            }
+        });
+
     }
 }

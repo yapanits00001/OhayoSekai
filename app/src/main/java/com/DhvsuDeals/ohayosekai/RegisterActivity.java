@@ -87,7 +87,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                     //check if passwords are matched
                     if (Click_password.matches(Click_ConfirmPass)){
-                        mAuth.createUserWithEmailAndPassword(Click_email, Click_password)
+                        mAuth.createUserWithEmailAndPassword(Click_email, Click_password)//User will be registered in the firebase Authentication
                                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                     @Override
                                     public void onComplete(@NonNull Task<AuthResult> task) {
