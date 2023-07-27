@@ -5,6 +5,7 @@ import static android.content.ContentValues.TAG;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -14,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.DhvsuDeals.ohayosekai.databinding.FragmentCreateBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
@@ -35,25 +37,29 @@ public class CreateFragment extends Fragment {
     private TextInputEditText edittxt_Name, edittxt_Money;
     private Button btnSave;
     FirebaseAuth mAuth;
+    FragmentCreateBinding CreateBinder;
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+                            @Nullable Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        CreateBinder = FragmentCreateBinding.inflate(inflater, container, false);
+        mAuth = FirebaseAuth.getInstance();
+        return CreateBinder.getRoot();
+    }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        mAuth = FirebaseAuth.getInstance();
-        View view = inflater.inflate(R.layout.fragment_create, container, false);
-        edittxt_Name = view.findViewById(R.id.txtName);
-        edittxt_Money = view.findViewById(R.id.txtCMoney);
-        btnSave = view.findViewById(R.id.btnCreate);
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState){
+        super.onViewCreated(view, savedInstanceState);
 
-
-        btnSave.setOnClickListener(new View.OnClickListener() {
+        CreateBinder.btnCreate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String User_ID = mAuth.getCurrentUser().getUid();//get the userUID on the firestore to be used as an user ID
                 DocumentReference SignUpRef_DB = FirebaseFirestore.getInstance().collection("Uses_ACCS_Information").document(User_ID);
-                String txtname = String.valueOf(edittxt_Name.getText());
-                String txtmoney = String.valueOf(edittxt_Money.getText());
+                String txtname = String.valueOf(CreateBinder.txtName.getText());
+                String txtmoney = String.valueOf(CreateBinder.txtCMoney.getText());
                 if (txtname.isEmpty() || txtmoney.isEmpty()){
                     Toast.makeText(getActivity(), "Fill out all of the boxes please!!", Toast.LENGTH_SHORT).show();
                 } else {
@@ -80,7 +86,6 @@ public class CreateFragment extends Fragment {
 
             }
         });
-        return view;
     }
 
 }

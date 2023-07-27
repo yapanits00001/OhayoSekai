@@ -53,8 +53,8 @@ public class SampleFragmentedLayoutMain extends AppCompatActivity {
     }
 
     private void replaceFragment(Fragment fragment){
-        FragmentManager fragmentManagerager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManagerager.beginTransaction();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.Frame_Crud,fragment);
         fragmentTransaction.commit();
 

@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.DhvsuDeals.ohayosekai.databinding.FragmentReadBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
@@ -24,35 +25,41 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.ListenerRegistration;
+
+import java.util.Objects;
+import java.util.concurrent.Executor;
 
 
 public class ReadFragment extends Fragment {
-    private FirebaseAuth mAuth;
-    private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private TextView ViewName, ViewBalance;
-    private Button btnRead;
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    String User_ID = mAuth.getCurrentUser().getUid();//get the userUID on the firestore to be used as an user ID
+    DocumentReference SignUpRef_DB = FirebaseFirestore.getInstance().document("Uses_ACCS_Information/" + User_ID);
     private static final String KEY_BALANCE = "Mem-Balance", KEY_NAME = "Mem-Name";
+    private FragmentReadBinding ReadBinder;
+    private ListenerRegistration listener;
 
 
-    @SuppressLint("MissingInflatedId")
+
+    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+                            @Nullable Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        mAuth = FirebaseAuth.getInstance();
-        View view = inflater.inflate(R.layout.fragment_read, container, false);
-        ViewName = view.findViewById(R.id.View_ReadName);
-        ViewBalance = view.findViewById(R.id.View_ReadBalance);
-        btnRead = view.findViewById(R.id.btnReadIt);
+        ReadBinder = FragmentReadBinding.inflate(inflater, container, false);
+        return ReadBinder.getRoot();
+    }
 
-        btnRead.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+
+        // Access and interact with views using the 'binding' object
+
+        ReadBinder.btnReadIt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String User_ID = mAuth.getCurrentUser().getUid();//get the userUID on the firestore to be used as an user ID
-                DocumentReference SignUpRef_DB = db.collection("Uses_ACCS_Information").document(User_ID);
-                SignUpRef_DB.addSnapshotListener(getActivity(), new EventListener<DocumentSnapshot>() {
-                    @Override
-                    public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
 
                         SignUpRef_DB.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                             @Override
@@ -64,8 +71,8 @@ public class ReadFragment extends Fragment {
                                         String name = ReadDocSnapshot.getString(KEY_NAME);
 
                                         String txtBalance = String.valueOf(intBalance);//convert the intbalance into string
-                                        ViewName.setText(name);
-                                        ViewBalance.setText(txtBalance);
+                                        ReadBinder.ViewReadName.setText(name);
+                                        ReadBinder.ViewReadBalance.setText(txtBalance);
 
                                     } else {
                                         Toast.makeText(getActivity(), "No Document saved on this account", Toast.LENGTH_SHORT).show();
@@ -78,20 +85,53 @@ public class ReadFragment extends Fragment {
                         }).addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
-
+                                Toast.makeText(getActivity(), "Error with the program", Toast.LENGTH_SHORT).show();
                             }
                         });
-
-                    }
-                });
-
-
 
 
             }
         });
 
 
-        return view;
+
     }
+
+    @Override
+    public void onStart(){
+        super.onStart();
+        listener = SignUpRef_DB.addSnapshotListener(new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(DocumentSnapshot documentSnapshot , FirebaseFirestoreException error) {
+
+                if (error != null){
+                    Toast.makeText(getActivity(), "Error while loading!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (documentSnapshot.exists()){
+                    Long intBalance = documentSnapshot.getLong(KEY_BALANCE);
+                    String name = documentSnapshot.getString(KEY_NAME);
+
+                    String txtBalance = String.valueOf(intBalance);//convert the intbalance into string
+                    ReadBinder.ViewReadName.setText(name);
+                    ReadBinder.ViewReadBalance.setText(txtBalance);
+
+                }
+            }
+        });
+    }
+
+    @Override
+    public void onStop(){
+        super.onStop();
+        listener.remove();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        // Nullify the binding object to avoid memory leaks
+        ReadBinder = null;
+    }
+
 }

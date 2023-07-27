@@ -4,8 +4,15 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.Spanned;
 import android.text.TextUtils;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
+import android.text.style.ForegroundColorSpan;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -13,6 +20,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.DhvsuDeals.ohayosekai.databinding.ActivityRegisterBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
@@ -27,11 +35,9 @@ import java.util.Map;
 
 public class RegisterActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
-     private TextInputEditText editTextEmail, editTextPassword, editTextConfirmPass;
-     private Button btnReg;
-     private ProgressBar ProgBar;
-     private TextView View_LogIn;
      private String User_ID;
+
+     ActivityRegisterBinding RegBinder;
 
 
     public void onStart() {
@@ -48,37 +54,43 @@ public class RegisterActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        RegBinder = ActivityRegisterBinding.inflate(getLayoutInflater());
         mAuth = FirebaseAuth.getInstance();
 
-        setContentView(R.layout.activity_register);
-        editTextEmail = findViewById(R.id.txtEmail);
-        editTextPassword = findViewById(R.id.txtPassword);
-        editTextConfirmPass = findViewById(R.id.txtConfirm_Password);
-        btnReg = findViewById(R.id.btnRegister);
-        ProgBar = findViewById(R.id.progressBar);
-        View_LogIn = findViewById(R.id.LogInNow);
+        setContentView(RegBinder.getRoot());
 
-        View_LogIn.setOnClickListener(new View.OnClickListener() {
+        String ViewTextLogIn = "Already registered? Log-In Here.";
+        SpannableString SpanStr = new SpannableString(ViewTextLogIn);
+        SpanStr.setSpan(new ForegroundColorSpan(Color.BLUE), 20,32, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        ClickableSpan ClickLogIn = new ClickableSpan() {
             @Override
-            public void onClick(View v) {
+            public void onClick(@NonNull View widget) {
+                Toast.makeText(RegisterActivity.this, "Redirecting...", Toast.LENGTH_SHORT).show();
                 Intent Go_LogIn = new Intent(getApplicationContext(), LogInActivity.class);
                 startActivity(Go_LogIn);
                 finish();
             }
-        });
+        };
+        SpanStr.setSpan(ClickLogIn, 20, 32, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        RegBinder.LogInNow.setText(SpanStr);
+        RegBinder.LogInNow.setMovementMethod(LinkMovementMethod.getInstance());//give the function for the colored text to go to LogIn Activity
 
-        btnReg.setOnClickListener(new View.OnClickListener() {
+
+
+        RegBinder.btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ProgBar.setVisibility(View.VISIBLE);
-                String Click_email, Click_password, Click_ConfirmPass;
-                Click_email = String.valueOf(editTextEmail.getText());
-                Click_password = String.valueOf(editTextPassword.getText());
-                Click_ConfirmPass = String.valueOf(editTextConfirmPass.getText());
+                RegBinder.progressBar.setVisibility(View.VISIBLE);
+                String Click_email, Click_password, Click_ConfirmPass, MemName, MemID;
+                Click_email = String.valueOf(RegBinder.txtEmail.getText());
+                Click_password = String.valueOf(RegBinder.txtPassword.getText());
+                Click_ConfirmPass = String.valueOf(RegBinder.txtConfirmPassword.getText());
+                MemName = getIntent().getStringExtra("PassMemName");
+                MemID = getIntent().getStringExtra("PassMemID");
 
                 if (TextUtils.isEmpty(Click_email) || TextUtils.isEmpty(Click_password)){
                     Toast.makeText(RegisterActivity.this, "Missing some Credentials", Toast.LENGTH_SHORT).show();
-                    ProgBar.setVisibility(View.GONE);
+                    RegBinder.progressBar.setVisibility(View.GONE);
                     return;
                 }
 
@@ -91,12 +103,13 @@ public class RegisterActivity extends AppCompatActivity {
                                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                     @Override
                                     public void onComplete(@NonNull Task<AuthResult> task) {
-                                        ProgBar.setVisibility(View.GONE);
+                                        RegBinder.progressBar.setVisibility(View.GONE);
                                         if (task.isSuccessful()) {
                                             User_ID = mAuth.getCurrentUser().getUid();//get the userUID on the firestore to be used as an user ID
                                             DocumentReference SignUpRef_DB = FirebaseFirestore.getInstance().collection("Uses_ACCS_Information").document(User_ID);
                                             Map<String, Object> SaveUser = new HashMap<>();
-                                            SaveUser.put("Mem-ID", User_ID);
+                                            SaveUser.put("Mem-ID", MemID);
+                                            SaveUser.put("Mem-Name", MemName);
                                             SaveUser.put("Mem-Email", Click_email);
                                             SaveUser.put("Mem-Password", Click_password);
 
@@ -115,15 +128,15 @@ public class RegisterActivity extends AppCompatActivity {
                                 });
 
                     }else {
-                        editTextPassword.setError("Passwords doesn't Match!!");
-                        editTextPassword.requestFocus();
-                        ProgBar.setVisibility(View.GONE);
+                        RegBinder.txtPassword.setError("Passwords doesn't Match!!");
+                        RegBinder.txtPassword.requestFocus();
+                        RegBinder.progressBar.setVisibility(View.GONE);
                     }//end else of password matching
 
                 } else {
-                    editTextEmail.setError("Please Enter a Valid Email");
-                    editTextEmail.requestFocus();
-                    ProgBar.setVisibility(View.GONE);
+                    RegBinder.txtEmail.setError("Please Enter a Valid Email");
+                    RegBinder.txtEmail.requestFocus();
+                    RegBinder.progressBar.setVisibility(View.GONE);
                 }//end else of email pattern checking
 
 
