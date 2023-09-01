@@ -1,6 +1,5 @@
 package com.DhvsuDeals.ohayosekai;
 
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -71,14 +70,12 @@ public class MainActivity extends AppCompatActivity {
 
             if (item.getItemId() == R.id.HomeNav){
                 replaceFragment(new Home_Fragment());
-            } else if (item.getItemId() == R.id.CreateNav) {
-                replaceFragment(new CreateFragment());
-            } else if (item.getItemId() == R.id.ReadNav) {
-                replaceFragment(new ReadFragment());
-            } else if (item.getItemId() == R.id.UpdateNav) {
-                replaceFragment(new UpdateFragment());
-            } else if (item.getItemId() == R.id.DeleteNav) {
-                replaceFragment(new DeleteFragment());
+            } else if (item.getItemId() == R.id.TransNav) {
+                replaceFragment(new TransactFragment());
+            } else if (item.getItemId() == R.id.InboxNav) {
+                replaceFragment(new InboxFragment());
+            } else if (item.getItemId() == R.id.ProfileNav) {
+                replaceFragment(new ProfileFragment());
             }
 
 

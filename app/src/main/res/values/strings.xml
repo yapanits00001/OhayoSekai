@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">OhayoSekai</string>
+    <string name="app_name">DHVSU Deals</string>
     <string name="log_in">Log-In</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
@@ -18,4 +18,5 @@
     <string name="member_id">Member ID</string>
     <string name="title_BalLoan">Outstanding Balance:</string>
     <string name="tittle_BalSavings">Savings:</string>
+    <string name="Date_Recieved">Date and Time Recieved</string>
 </resources>

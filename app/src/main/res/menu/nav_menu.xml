@@ -6,23 +6,18 @@
         android:icon="@drawable/baseline_home_24"
         android:title="Home" />
     <item
-        android:id="@+id/CreateNav"
-        android:icon="@drawable/baseline_home_24"
-        android:title="Create" />
-
-    <item
-        android:id="@+id/ReadNav"
+        android:id="@+id/TransNav"
         android:icon="@drawable/baseline_history_24"
-        android:title="Read" />
+        android:title="Transaction History" />
 
     <item
-        android:id="@+id/UpdateNav"
+        android:id="@+id/InboxNav"
         android:icon="@drawable/baseline_message_24"
-        android:title="Update" />
+        android:title="Inbox" />
 
     <item
-        android:id="@+id/DeleteNav"
+        android:id="@+id/ProfileNav"
         android:icon="@drawable/baseline_person_pin_24"
-        android:title="Delete" />
+        android:title="Profile" />
 
 </menu>

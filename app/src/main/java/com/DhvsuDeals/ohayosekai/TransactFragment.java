@@ -10,27 +10,28 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.DhvsuDeals.ohayosekai.databinding.FragmentUpdateBinding;
+import com.DhvsuDeals.ohayosekai.databinding.FragmentTransactBinding;
 
 
-public class UpdateFragment extends Fragment {
+public class TransactFragment extends Fragment {
 
 
-    private FragmentUpdateBinding binding;
+    private FragmentTransactBinding binding;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         // Inflate the layout for this fragment using View Binding
-        binding = FragmentUpdateBinding.inflate(inflater, container, false);
+        binding = FragmentTransactBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         // Access and interact with views using the 'binding' object
+
+
     }
 
     @Override

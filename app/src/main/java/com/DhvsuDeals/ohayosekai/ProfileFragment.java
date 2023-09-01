@@ -10,20 +10,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.DhvsuDeals.ohayosekai.databinding.FragmentDeleteBinding;
-import com.DhvsuDeals.ohayosekai.databinding.FragmentUpdateBinding;
+import com.DhvsuDeals.ohayosekai.databinding.FragmentProfileBinding;
 
 
-public class DeleteFragment extends Fragment {
+public class ProfileFragment extends Fragment {
 
 
-    private FragmentDeleteBinding binding;
+    private FragmentProfileBinding binding;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         // Inflate the layout for this fragment using View Binding
-        binding = FragmentDeleteBinding.inflate(inflater, container, false);
+        binding = FragmentProfileBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 

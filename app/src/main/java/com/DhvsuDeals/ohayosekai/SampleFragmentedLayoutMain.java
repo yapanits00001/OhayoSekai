@@ -24,7 +24,7 @@ public class SampleFragmentedLayoutMain extends AppCompatActivity {
         B_Create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                replaceFragment(new CreateFragment());
+                replaceFragment(new Home_Fragment());
 
             }
         });
@@ -39,14 +39,14 @@ public class SampleFragmentedLayoutMain extends AppCompatActivity {
         B_Update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                replaceFragment(new UpdateFragment());
+                replaceFragment(new TransactFragment());
             }
         });
 
         B_Delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                replaceFragment(new DeleteFragment());
+                replaceFragment(new ProfileFragment());
             }
         });
 
