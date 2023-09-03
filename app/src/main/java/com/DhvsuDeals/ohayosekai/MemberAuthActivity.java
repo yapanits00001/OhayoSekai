@@ -85,4 +85,10 @@ public class MemberAuthActivity extends AppCompatActivity {
             });
 
     }
+    @Override
+    public void onBackPressed(){
+        Intent Go_LogIn = new Intent(getApplicationContext(), LogInActivity.class);
+        startActivity(Go_LogIn);
+        finish();
+    }
 }

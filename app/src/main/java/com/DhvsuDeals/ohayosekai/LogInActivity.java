@@ -38,9 +38,15 @@ public class LogInActivity extends AppCompatActivity {
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser != null){
-            Intent Go_Dashboard = new Intent(getApplicationContext(), MainActivity.class);
-            startActivity(Go_Dashboard);
-            finish();
+            if (currentUser.isEmailVerified()){
+                Toast.makeText(LogInActivity.this, "Log-In Successful", Toast.LENGTH_SHORT).show();
+                Intent Go_Dashboard = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(Go_Dashboard);
+                finish();
+            } else {
+                Toast.makeText(LogInActivity.this, "Email is not Verified!!.",
+                        Toast.LENGTH_SHORT).show();
+            }
         }
     }
 
@@ -82,6 +88,7 @@ public class LogInActivity extends AppCompatActivity {
 
         });*/
 
+
         LIBinder.btnLogIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -102,12 +109,18 @@ public class LogInActivity extends AppCompatActivity {
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 LIBinder.progressBar.setVisibility(View.GONE);
                                 if (task.isSuccessful()) {
-                                    Toast.makeText(LogInActivity.this, "Log-In Successful", Toast.LENGTH_SHORT).show();
-                                    Intent Go_Dashboard = new Intent(getApplicationContext(), MainActivity.class);
-                                    startActivity(Go_Dashboard);
-                                    finish();
+                                    if (mAuth.getCurrentUser().isEmailVerified()){
+                                        Toast.makeText(LogInActivity.this, "Log-In Successful", Toast.LENGTH_SHORT).show();
+                                        Intent Go_Dashboard = new Intent(getApplicationContext(), MainActivity.class);
+                                        startActivity(Go_Dashboard);
+                                        finish();
+                                    } else {
+                                        Toast.makeText(LogInActivity.this, "Email is not Verified!!.",
+                                                Toast.LENGTH_SHORT).show();
+                                    }
+
                                 } else {
-                                    Toast.makeText(LogInActivity.this, "Authentication failed.",
+                                    Toast.makeText(LogInActivity.this, "Log-In Failed.",
                                             Toast.LENGTH_SHORT).show();
                                     ;
                                 }
@@ -116,4 +129,5 @@ public class LogInActivity extends AppCompatActivity {
             }
         });
     }
+
 }

@@ -3,6 +3,7 @@ package com.DhvsuDeals.ohayosekai;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -38,7 +39,7 @@ public class RegisterActivity extends AppCompatActivity {
      private String User_ID;
 
      ActivityRegisterBinding RegBinder;
-
+     ProgressDialog progressDialog;
 
     public void onStart() {
         super.onStart();
@@ -56,8 +57,12 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         RegBinder = ActivityRegisterBinding.inflate(getLayoutInflater());
         mAuth = FirebaseAuth.getInstance();
-
         setContentView(RegBinder.getRoot());
+
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setCancelable(false);
+        progressDialog.setMessage("Fetching Data.....");
+
 
         String ViewTextLogIn = "Already registered? Log-In Here.";
         SpannableString SpanStr = new SpannableString(ViewTextLogIn);
@@ -91,6 +96,7 @@ public class RegisterActivity extends AppCompatActivity {
                 if (TextUtils.isEmpty(Click_email) || TextUtils.isEmpty(Click_password)){
                     Toast.makeText(RegisterActivity.this, "Missing some Credentials", Toast.LENGTH_SHORT).show();
                     RegBinder.progressBar.setVisibility(View.GONE);
+
                     return;
                 }
 
@@ -105,23 +111,37 @@ public class RegisterActivity extends AppCompatActivity {
                                     public void onComplete(@NonNull Task<AuthResult> task) {
                                         RegBinder.progressBar.setVisibility(View.GONE);
                                         if (task.isSuccessful()) {
-                                            User_ID = mAuth.getCurrentUser().getUid();//get the userUID on the firestore to be used as an user ID
-                                            DocumentReference SignUpRef_DB = FirebaseFirestore.getInstance().collection("Uses_ACCS_Information").document(User_ID);
-                                            Map<String, Object> SaveUser = new HashMap<>();
-                                            SaveUser.put("Mem-ID", MemID);
-                                            SaveUser.put("Mem-Name", MemName);
-                                            SaveUser.put("Mem-Email", Click_email);
-                                            SaveUser.put("Mem-Password", Click_password);
 
-                                            SignUpRef_DB.set(SaveUser);
+                                            mAuth.getCurrentUser().sendEmailVerification().
+                                                    addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<Void> task) {
+                                                    if (task.isSuccessful()){
 
-                                            Toast.makeText(RegisterActivity.this, "Authentication Success!.", Toast.LENGTH_SHORT).show();
-                                            Intent Go_LogIn = new Intent(getApplicationContext(), LogInActivity.class);
-                                            startActivity(Go_LogIn);
-                                            finish();
+                                                        User_ID = mAuth.getCurrentUser().getUid();//get the userUID on the firestore to be used as an user ID
+                                                        DocumentReference SignUpRef_DB = FirebaseFirestore.getInstance().collection("Uses_ACCS_Information").document(User_ID);
+                                                        Map<String, Object> SaveUser = new HashMap<>();
+                                                        SaveUser.put("Mem-ID", MemID);
+                                                        SaveUser.put("Mem-Name", MemName);
+                                                        SaveUser.put("Mem-Email", Click_email);
+                                                        SaveUser.put("Mem-Password", Click_password);
+
+                                                        SignUpRef_DB.set(SaveUser);
+                                                        Toast.makeText(RegisterActivity.this, "Registered Successfully!!.", Toast.LENGTH_SHORT).show();
+                                                        openDialog();
+
+                                                    } else {
+                                                        Toast.makeText(RegisterActivity.this, "Error Verifying!!!", Toast.LENGTH_SHORT).show();
+                                                    }
+
+
+                                                }
+                                            });
+
+
                                         } else {
 
-                                            Toast.makeText(RegisterActivity.this, "Authentication Failed!.",
+                                            Toast.makeText(RegisterActivity.this, "User Registration Failed!.",
                                                     Toast.LENGTH_SHORT).show();
                                         }
                                     }
@@ -142,5 +162,11 @@ public class RegisterActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    public void openDialog(){
+        VerifyEmailDialogBox verifyEmailDialogBox = new VerifyEmailDialogBox();
+        verifyEmailDialogBox.show(getSupportFragmentManager(), "email notif verifier");
+
     }
 }
