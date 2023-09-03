@@ -73,6 +73,7 @@ public class MemberAuthActivity extends AppCompatActivity {
                                 Go_Register.putExtra("PassMemName", welcomeName); //pass the values to the register
                                 startActivity(Go_Register);
                                 finish();
+
                             }
 
                         } else {
