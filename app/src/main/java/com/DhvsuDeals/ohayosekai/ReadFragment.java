@@ -127,11 +127,6 @@ public class ReadFragment extends Fragment {
         listener.remove();
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        // Nullify the binding object to avoid memory leaks
-        ReadBinder = null;
-    }
+
 
 }

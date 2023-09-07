@@ -23,9 +23,11 @@ public class VP_Loan_Savings_Adapter extends RecyclerView.Adapter<VP_Loan_Saving
 
     @NonNull
     @Override
-    public VP_Loan_Savings_Adapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(context).inflate(R.layout.viewpager_items_loans_savings,parent,false);
-        return new VP_Loan_Savings_Adapter.ViewHolder(v);
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
+        View view = LayoutInflater.from(context)
+                .inflate(R.layout.viewpager_items_loans_savings,parent , false);
+        return new ViewHolder(view);
     }
 
     @Override

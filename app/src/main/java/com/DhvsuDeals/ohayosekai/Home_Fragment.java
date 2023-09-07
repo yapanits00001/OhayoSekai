@@ -46,10 +46,12 @@ public class Home_Fragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        progressDialog = new ProgressDialog(getActivity());
+       /* progressDialog = new ProgressDialog(getActivity());
         progressDialog.setCancelable(false);
         progressDialog.setMessage("Fetching Data.....");
         progressDialog.show();
+
+
         // Access and interact with views using the 'binding' object
 
         db = FirebaseFirestore.getInstance();
@@ -57,12 +59,12 @@ public class Home_Fragment extends Fragment {
         vp_loan_savings_adapter = new VP_Loan_Savings_Adapter(getActivity(), viewPagerItem_loan_savingsArrayList);
 
         HBinder.ViewPagerLoansSavings.setAdapter(vp_loan_savings_adapter);
-        EventchangeListener();
-
+        //EventchangeListener(); error in viewpager*/
+//remove comments to see the errors in view pager
     }
 
     private void EventchangeListener() {
-        db.collection("SampleViewPager").orderBy("balance", Query.Direction.ASCENDING)
+        db.collection("SampleViewPager")
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {

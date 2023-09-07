@@ -93,10 +93,5 @@ public class InboxFragment extends Fragment {
         });
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        // Nullify the binding object to avoid memory leaks
-        binding = null;
-    }
+
 }
