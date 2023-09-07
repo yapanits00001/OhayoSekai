@@ -14,40 +14,37 @@ import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.text.style.ForegroundColorSpan;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.DhvsuDeals.ohayosekai.databinding.ActivityLogInBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class LogInActivity extends AppCompatActivity {
-    private FirebaseAuth mAuth;
+     FirebaseAuth mAuth;
 
      ActivityLogInBinding LIBinder;
+
 
     @Override
     public void onStart() {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        if(currentUser != null){
-            if (currentUser.isEmailVerified()){
+        //if (currentUser != null) {
+            if (currentUser.isEmailVerified()) {
                 Toast.makeText(LogInActivity.this, "Log-In Successful", Toast.LENGTH_SHORT).show();
                 Intent Go_Dashboard = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(Go_Dashboard);
                 finish();
-            } else {
+           /* } else {
                 Toast.makeText(LogInActivity.this, "Email is not Verified!!.",
                         Toast.LENGTH_SHORT).show();
-            }
-        }
+            }*/
+        }//TODO: Need i access ang mga specific accounts para mai ayos ung on start
     }
 
     @Override
@@ -57,10 +54,11 @@ public class LogInActivity extends AppCompatActivity {
         setContentView(LIBinder.getRoot());
         mAuth = FirebaseAuth.getInstance();
 
-        String viewTextReg = "Don't have an account? Sign Up Here. ";
-        SpannableString SpanStr = new SpannableString(viewTextReg);
-        SpanStr.setSpan(new ForegroundColorSpan(Color.BLUE), 24,36, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        ClickableSpan clickRegister = new ClickableSpan() {
+        //clickable link like for register account
+        String viewTextReg = "Don't have an account? Sign Up Here.";
+        SpannableString SpanStrReg = new SpannableString(viewTextReg);
+        SpanStrReg.setSpan(new ForegroundColorSpan(Color.BLUE), 24,35, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        ClickableSpan clickReg = new ClickableSpan() {
             @Override
             public void onClick(@NonNull View widget) {
                 Toast.makeText(LogInActivity.this, "Redirecting..", Toast.LENGTH_SHORT).show();
@@ -69,11 +67,27 @@ public class LogInActivity extends AppCompatActivity {
                 finish();
             }
         };
-        SpanStr.setSpan(clickRegister, 23, 37, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        LIBinder.Registration.setText(SpanStr);
+        SpanStrReg.setSpan(clickReg, 23, 35, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        LIBinder.Registration.setText(SpanStrReg);
         LIBinder.Registration.setMovementMethod(LinkMovementMethod.getInstance());
 
+        //clickable link like for forgot password
+        String viewTextForgotPass = "Forgot Password? ";
+        SpannableString SpanStrForgotPass = new SpannableString(viewTextForgotPass);
+        SpanStrForgotPass.setSpan(new ForegroundColorSpan(Color.BLUE), 0, 15, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
+        ClickableSpan clickForgotPassword = new ClickableSpan() {
+            @Override
+            public void onClick(@NonNull View widget) {
+                Toast.makeText(LogInActivity.this, "Redirecting..", Toast.LENGTH_SHORT).show();
+                Intent Go_ForgotPass = new Intent(getApplicationContext(), ForgotPasswordActivity.class);
+                startActivity(Go_ForgotPass);
+                finish();
+            }
+        };
+        SpanStrForgotPass.setSpan(clickForgotPassword, 0, 15, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        LIBinder.ForgotPassword.setText(SpanStrForgotPass);
+        LIBinder.ForgotPassword.setMovementMethod(LinkMovementMethod.getInstance());
 
 
 
@@ -97,10 +111,18 @@ public class LogInActivity extends AppCompatActivity {
                 Click_email = String.valueOf(LIBinder.txtEmail.getText());
                 Click_password = String.valueOf(LIBinder.txtPassword.getText());
 
-                if (TextUtils.isEmpty(Click_email) || TextUtils.isEmpty(Click_password)){
-                    Toast.makeText(LogInActivity.this, "Missing some Credentials", Toast.LENGTH_SHORT).show();
+                if (TextUtils.isEmpty(Click_email)){
+                    LIBinder.txtEmail.setError("Email cannot be empty!!");
+                    LIBinder.txtEmail.requestFocus();
                     LIBinder.progressBar.setVisibility(View.GONE);
                     return;
+                } else {
+                    if (TextUtils.isEmpty(Click_password)){
+                        LIBinder.txtPassword.setError("Password cannot be empty!!");
+                        LIBinder.txtPassword.requestFocus();
+                        LIBinder.progressBar.setVisibility(View.GONE);
+                        return;
+                    }
                 }
 
                 mAuth.signInWithEmailAndPassword(Click_email, Click_password)

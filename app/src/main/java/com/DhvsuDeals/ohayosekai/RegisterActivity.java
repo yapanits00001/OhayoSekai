@@ -93,11 +93,26 @@ public class RegisterActivity extends AppCompatActivity {
                 MemName = getIntent().getStringExtra("PassMemName");
                 MemID = getIntent().getStringExtra("PassMemID");
 
-                if (TextUtils.isEmpty(Click_email) || TextUtils.isEmpty(Click_password)){
-                    Toast.makeText(RegisterActivity.this, "Missing some Credentials", Toast.LENGTH_SHORT).show();
+                if (TextUtils.isEmpty(Click_email)){
+                    RegBinder.txtEmail.setError("Email cannot be empty!!");
+                    RegBinder.txtEmail.requestFocus();
                     RegBinder.progressBar.setVisibility(View.GONE);
 
                     return;
+                } else {
+                    if (TextUtils.isEmpty(Click_password)){
+                        RegBinder.txtPassword.setError("Password cannot be empty!!");
+                        RegBinder.txtPassword.requestFocus();
+                        RegBinder.progressBar.setVisibility(View.GONE);
+                        return;
+                    } else {
+                        if (TextUtils.isEmpty(Click_ConfirmPass)){
+                            RegBinder.txtConfirmPassword.setError("Confirm-Password cannot be empty!!");
+                            RegBinder.txtConfirmPassword.requestFocus();
+                            RegBinder.progressBar.setVisibility(View.GONE);
+                            return;
+                        }
+                    }
                 }
 
                 //check if the email inputed matches the EMAIL PATTERN Type

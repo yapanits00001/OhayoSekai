@@ -19,4 +19,7 @@
     <string name="title_BalLoan">Outstanding Balance:</string>
     <string name="tittle_BalSavings">Savings:</string>
     <string name="Date_Recieved">Date and Time Recieved</string>
+    <string name="forgot_password">Forgot Password</string>
+    <string name="btnback">Back</string>
+    <string name="reset_password">Reset Password</string>
 </resources>
