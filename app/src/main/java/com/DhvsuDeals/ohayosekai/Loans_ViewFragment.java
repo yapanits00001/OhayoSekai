@@ -6,28 +6,19 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.DhvsuDeals.ohayosekai.databinding.FragmentHomeBinding;
-import com.DhvsuDeals.ohayosekai.databinding.FragmentInboxBinding;
-import com.google.firebase.firestore.DocumentChange;
-import com.google.firebase.firestore.EventListener;
+import com.DhvsuDeals.ohayosekai.databinding.FragmentLoansViewBinding;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.QuerySnapshot;
-
-import java.util.ArrayList;
 
 
-public class Home_Fragment extends Fragment {
+public class Loans_ViewFragment extends Fragment {
 
-    private FragmentHomeBinding HBinder;
+    private FragmentLoansViewBinding loansViewBinding;
     FirebaseFirestore db;
 
     ProgressDialog progressDialog;
@@ -37,8 +28,8 @@ public class Home_Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        HBinder = FragmentHomeBinding.inflate(inflater, container, false);
-        return HBinder.getRoot();
+        loansViewBinding = FragmentLoansViewBinding.inflate(inflater, container, false);
+        return loansViewBinding.getRoot();
 
     }
 
@@ -54,6 +45,7 @@ public class Home_Fragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         // Nullify the binding object to avoid memory leaks
-        HBinder = null;
+        loansViewBinding = null;
     }
+
 }
