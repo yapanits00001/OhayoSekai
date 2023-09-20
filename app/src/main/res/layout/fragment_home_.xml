@@ -3,6 +3,7 @@
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="10dp">
@@ -23,25 +24,34 @@
               android:layout_gravity="center"
               android:background="@drawable/savemoney_05_1"></View>
 
-          <com.google.android.material.tabs.TabLayout
-              android:id="@+id/LoansSavingsTab"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content">
 
-              <com.google.android.material.tabs.TabItem
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content" />
-
-              <com.google.android.material.tabs.TabItem
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content" />
-
-          </com.google.android.material.tabs.TabLayout>
 
           <androidx.viewpager2.widget.ViewPager2
               android:id="@+id/VPLoansSavings"
               android:layout_width="match_parent"
               android:layout_height="wrap_content" />
+
+          <LinearLayout
+              android:id="@+id/indicator_VP"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_gravity="center_horizontal|bottom"
+              android:orientation="horizontal">
+
+              <View
+                  android:layout_width="12dp"
+                  android:layout_height="12dp"
+                  android:background="@drawable/idle_selector_indicator"/>
+              <View
+                  android:layout_width="12dp"
+                  android:layout_height="12dp"
+                  android:background="@drawable/idle_selector_indicator"/>
+
+
+          </LinearLayout>
+
+
+
 
           <View
               android:id="@+id/rect3"

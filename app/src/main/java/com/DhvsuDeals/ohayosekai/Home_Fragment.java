@@ -2,29 +2,18 @@ package com.DhvsuDeals.ohayosekai;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.viewpager2.widget.ViewPager2;
 
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
 import com.DhvsuDeals.ohayosekai.databinding.FragmentHomeBinding;
-import com.DhvsuDeals.ohayosekai.databinding.FragmentInboxBinding;
-import com.google.android.material.tabs.TabLayout;
-import com.google.firebase.firestore.DocumentChange;
-import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.QuerySnapshot;
-
-import java.util.ArrayList;
 
 
 public class Home_Fragment extends Fragment {
@@ -33,6 +22,7 @@ public class Home_Fragment extends Fragment {
     FirebaseFirestore db;
     ProgressDialog progressDialog;
     VP_Adapter_LOANS_SAVINGS vp_adapter_loans_savings;
+
 
 
     @Override
@@ -50,30 +40,27 @@ public class Home_Fragment extends Fragment {
         vp_adapter_loans_savings = new VP_Adapter_LOANS_SAVINGS(getActivity());
         HBinder.VPLoansSavings.setAdapter(vp_adapter_loans_savings);
 
-        HBinder.LoansSavingsTab.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                HBinder.VPLoansSavings.setCurrentItem(tab.getPosition());
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });
-
         HBinder.VPLoansSavings.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageSelected(int position) {
-                super.onPageSelected(position);
-                HBinder.LoansSavingsTab.getTabAt(position).select();
+                updateIndicator(position);
             }
         });
+
+        HBinder.VPLoansSavings.setPageTransformer(new PageTransformer());
+
+
+    }
+
+    private void updateIndicator(int position){
+        HBinder.indicatorVP.removeAllViews();
+        for (int i = 0; i < vp_adapter_loans_savings.getItemCount(); i++){
+            ImageView indicator = new ImageView(getActivity());
+            indicator.setImageResource(
+                    i == position ? R.drawable.selected_indicator : R.drawable.idle_selector_indicator
+            );
+            HBinder.indicatorVP.addView(indicator);
+        }
     }
 
 
