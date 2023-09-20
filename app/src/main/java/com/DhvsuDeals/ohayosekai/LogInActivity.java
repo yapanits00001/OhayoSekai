@@ -14,19 +14,23 @@ import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.text.style.ForegroundColorSpan;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.DhvsuDeals.ohayosekai.databinding.ActivityLogInBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class LogInActivity extends AppCompatActivity {
      FirebaseAuth mAuth;
-
+     
      ActivityLogInBinding LIBinder;
+
+
 
 
     @Override
@@ -35,17 +39,14 @@ public class LogInActivity extends AppCompatActivity {
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
         //if (currentUser != null) {
-            if (currentUser.isEmailVerified()) {
-                Toast.makeText(LogInActivity.this, "Log-In Successful", Toast.LENGTH_SHORT).show();
+            if (currentUser != null){
                 Intent Go_Dashboard = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(Go_Dashboard);
                 finish();
-           /* } else {
-                Toast.makeText(LogInActivity.this, "Email is not Verified!!.",
-                        Toast.LENGTH_SHORT).show();
-            }*/
+
         }//TODO: Need i access ang mga specific accounts para mai ayos ung on start
     }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +54,11 @@ public class LogInActivity extends AppCompatActivity {
         LIBinder = ActivityLogInBinding.inflate(getLayoutInflater());
         setContentView(LIBinder.getRoot());
         mAuth = FirebaseAuth.getInstance();
+
+        Button btnLogIn = findViewById(R.id.btnLogIn);
+        btnLogIn.setBackgroundResource(R.drawable.btn_bg);
+
+
 
         //clickable link like for register account
         String viewTextReg = "Don't have an account? Sign Up Here.";
@@ -150,6 +156,9 @@ public class LogInActivity extends AppCompatActivity {
                         });
             }
         });
+
+
+
     }
 
 }

@@ -30,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
         Homebinding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(Homebinding.getRoot());
         replaceFragment(new Home_Fragment());
+        getSupportActionBar().hide();
+
 
 
         Auth = FirebaseAuth.getInstance();
@@ -43,28 +45,10 @@ public class MainActivity extends AppCompatActivity {
             Intent Go_LogIn = new Intent(getApplicationContext(), LogInActivity.class);
             startActivity(Go_LogIn);
             finish();
-        } else {
-            Homebinding.ViewAccount.setText(User.getEmail());
         }
 
-        Homebinding.btnLogOut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
-                Intent Go_LogIn = new Intent(getApplicationContext(), LogInActivity.class);
-                startActivity(Go_LogIn);
-                finish();
-            }
-        });
 
-        Homebinding.SwtchFragmentLYT.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent Go_Crud = new Intent(getApplicationContext(), SampleFragmentedLayoutMain.class);
-                startActivity(Go_Crud);
-                finish();
-            }
-        });
+
 
         Homebinding.NavigationButtons.setOnItemSelectedListener(item -> {
 
