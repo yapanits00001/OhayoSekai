@@ -30,9 +30,6 @@ public class LogInActivity extends AppCompatActivity {
      
      ActivityLogInBinding LIBinder;
 
-
-
-
     @Override
     public void onStart() {
         super.onStart();
