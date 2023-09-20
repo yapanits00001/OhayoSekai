@@ -48,8 +48,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-
-
         Homebinding.NavigationButtons.setOnItemSelectedListener(item -> {
 
             if (item.getItemId() == R.id.HomeNav){
@@ -61,26 +59,6 @@ public class MainActivity extends AppCompatActivity {
             } else if (item.getItemId() == R.id.ProfileNav) {
                 replaceFragment(new ProfileFragment());
             }
-
-
-            /*switch (item.getItemId()){
-
-                case R.id.HomeNav:
-                    replaceFragment(new Home_Fragment());
-                    break;
-                case R.id.CreateNav:
-                    replaceFragment(new CreateFragment());
-                    break;
-                case R.id.ReadNav:
-                    replaceFragment(new ReadFragment());
-                    break;
-                case R.id.UpdateNav:
-                    replaceFragment(new UpdateFragment());
-                    break;
-                case R.id.DeleteNav:
-                    replaceFragment(new DeleteFragment());
-                    break;
-            }*/
             return true;
         });
 
