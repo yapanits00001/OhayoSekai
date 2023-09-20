@@ -1,31 +1,37 @@
 package com.DhvsuDeals.ohayosekai;
 
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.viewpager2.widget.ViewPager2;
+import androidx.recyclerview.widget.LinearLayoutManager;
+
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.DhvsuDeals.ohayosekai.databinding.FragmentHomeBinding;
+import com.DhvsuDeals.ohayosekai.databinding.FragmentInboxBinding;
+import com.google.firebase.firestore.DocumentChange;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.ArrayList;
 
 
 public class Home_Fragment extends Fragment {
-    public Home_Fragment(){}
 
     private FragmentHomeBinding HBinder;
     FirebaseFirestore db;
+
     ProgressDialog progressDialog;
-    VP_Adapter_LOANS_SAVINGS vp_adapter_loans_savings;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -35,35 +41,28 @@ public class Home_Fragment extends Fragment {
         return HBinder.getRoot();
 
     }
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        vp_adapter_loans_savings = new VP_Adapter_LOANS_SAVINGS(getActivity());
-        HBinder.VPLoansSavings.setAdapter(vp_adapter_loans_savings);
-
-        HBinder.VPLoansSavings.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
-            @Override
-            public void onPageSelected(int position) {
-                updateIndicator(position);
-            }
-        });
-
-        HBinder.VPLoansSavings.setPageTransformer(new PageTransformer());
+       /* progressDialog = new ProgressDialog(getActivity());
+        progressDialog.setCancelable(false);
+        progressDialog.setMessage("Fetching Data.....");
+        progressDialog.show();
 
 
+        // Access and interact with views using the 'binding' object
+
+        db = FirebaseFirestore.getInstance();
+        viewPagerItem_loan_savingsArrayList = new ArrayList<ViewPagerItem_Loan_Savings>();
+        vp_loan_savings_adapter = new VP_Loan_Savings_Adapter(getActivity(), viewPagerItem_loan_savingsArrayList);
+
+        HBinder.ViewPagerLoansSavings.setAdapter(vp_loan_savings_adapter);
+        //EventchangeListener(); error in viewpager*/
+//remove comments to see the errors in view pager
     }
 
-    private void updateIndicator(int position){
 
-        HBinder.indicatorVP.removeAllViews();
-        for (int i = 0; i < vp_adapter_loans_savings.getItemCount(); i++){
-            ImageView indicator = new ImageView(getActivity());
-            indicator.setImageResource(
-                    i == position ? R.drawable.selected_indicator : R.drawable.idle_selector_indicator
-            );
-            HBinder.indicatorVP.addView(indicator);
-        }
-    }
 
     @Override
     public void onDestroyView() {

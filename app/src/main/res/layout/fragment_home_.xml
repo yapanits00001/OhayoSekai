@@ -1,71 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="10dp">
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp">
 
-  <RelativeLayout
-      android:layout_width="match_parent"
-      android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-      <LinearLayout
-          android:layout_width="match_parent"
-          android:layout_height="match_parent"
-          android:orientation="vertical">
-
-          <View
-              android:id="@+id/rectangle_2"
-              android:layout_width="337dp"
-              android:layout_height="57dp"
-              android:layout_gravity="center"
-              android:background="@drawable/savemoney_05_1"></View>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical">
 
 
+            <View
+                android:id="@+id/logotop"
+                android:layout_width="175dp"
+                android:layout_height="49dp"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/dclog">
 
-          <androidx.viewpager2.widget.ViewPager2
-              android:id="@+id/VPLoansSavings"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content" />
+            </View>
 
-          <LinearLayout
-              android:id="@+id/indicator_VP"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_gravity="center_horizontal|bottom"
-              android:orientation="horizontal"
-              android:layout_marginVertical="2dp">
+            <View
+                android:id="@+id/rect2"
+                android:layout_width="337dp"
+                android:layout_height="73dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/fmoney">
 
-              <View
-                  android:layout_width="12dp"
-                  android:layout_height="12dp"
-                  android:background="@drawable/idle_selector_indicator" />
-
-              <View
-                  android:layout_width="12dp"
-                  android:layout_height="12dp"
-                  android:background="@drawable/idle_selector_indicator" />
+            </View>
 
 
-          </LinearLayout>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:background="@drawable/main_frame"
+                app:cardCornerRadius="30dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="249dp"
+                    android:background="#197940"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0"
+
+                    >
 
 
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/View_Balance"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginStart="-152dp"
+                            android:layout_marginTop="69dp"
+                            android:layout_marginBottom="-3dp"
+                            android:layout_toEndOf="@+id/Item_Name"
+                            android:hint="0.0"
+                            android:textColor="#FFFFFF"
+                            android:textColorHighlight="#FFFFFF"
+                            android:textColorHint="#FFFFFF"
+                            android:textColorLink="#FFFFFF"
+                            android:textSize="25sp" />
+
+                        <TextView
+                            android:id="@+id/Item_Name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginStart="33dp"
+                            android:layout_marginTop="36dp"
+                            android:text="@string/title_BalLoan"
+                            android:textColor="#FFFFFF"
+                            android:textColorHighlight="#FFFFFF"
+                            android:textColorLink="#FFFFFF"
+                            android:textSize="18sp" />
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <View
+                android:id="@+id/rect3"
+                android:layout_width="337dp"
+                android:layout_height="57dp"
+                android:layout_gravity="center"
+                android:background="@drawable/savemoney_05_1">
+
+            </View>
+        </LinearLayout>
 
 
-          <View
-              android:id="@+id/rect3"
-              android:layout_width="337dp"
-              android:layout_height="57dp"
-              android:layout_gravity="center"
-              android:background="@drawable/savemoney_05_1"></View>
-      </LinearLayout>
-
-
-  </RelativeLayout>
-
+    </RelativeLayout>
 
 
 </ScrollView>
