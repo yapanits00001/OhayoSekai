@@ -33,7 +33,6 @@ public class Home_Fragment extends Fragment {
         return HBinder.getRoot();
 
     }
-
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
