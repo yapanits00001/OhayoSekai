@@ -22,6 +22,18 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth Auth;
     private FirebaseUser User;
     ActivityMainBinding Homebinding;
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        User = Auth.getCurrentUser();
+        if(User == null){
+            Intent Go_Login = new Intent(getApplicationContext(), LogInActivity.class);
+            startActivity(Go_Login);
+            finish();
+        }
+
+
+    }
 
 
     @Override
@@ -32,21 +44,11 @@ public class MainActivity extends AppCompatActivity {
         replaceFragment(new Home_Fragment());
         getSupportActionBar().hide();
 
-
-
         Auth = FirebaseAuth.getInstance();
         /*btnLogOut = findViewById(R.id.btnLogOut);
         btnFragment_Crud = findViewById(R.id.SwtchFragmentLYT);
         View_Account = findViewById(R.id.ViewAccount);*/
         User = Auth.getCurrentUser();
-
-
-        if (User==null){
-            Intent Go_LogIn = new Intent(getApplicationContext(), LogInActivity.class);
-            startActivity(Go_LogIn);
-            finish();
-        }
-
 
         Homebinding.NavigationButtons.setOnItemSelectedListener(item -> {
 
@@ -63,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
 
 
     private void replaceFragment(Fragment fragment){

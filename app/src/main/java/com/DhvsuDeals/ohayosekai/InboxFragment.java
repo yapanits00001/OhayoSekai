@@ -36,9 +36,12 @@ public class InboxFragment extends Fragment {
     FirebaseFirestore db;
     ProgressDialog progressDialog;
 
+    public InboxFragment(){}
+
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
+    {
         // Inflate the layout for this fragment using View Binding
         binding = FragmentInboxBinding.inflate(inflater, container, false);
         return binding.getRoot();
@@ -48,6 +51,9 @@ public class InboxFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         // Access and interact with views using the 'binding' object
+
+
+
         progressDialog = new ProgressDialog(getActivity());
         progressDialog.setCancelable(false);
         progressDialog.setMessage("Fetching Data.....");
@@ -68,6 +74,7 @@ public class InboxFragment extends Fragment {
 
 
     }
+
 
     private void EventchangeListener() {
         db.collection("SampleInbox").orderBy("Date_Received", Query.Direction.ASCENDING)

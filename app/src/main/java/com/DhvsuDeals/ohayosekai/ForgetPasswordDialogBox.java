@@ -22,10 +22,10 @@ public class ForgetPasswordDialogBox extends AppCompatDialogFragment {
                     public void onClick(DialogInterface dialog, int which) {
                         Go_Login();
                     }
+
                 });
         return builder.create();
     }
-
     public void Go_Login(){
         Intent Go_LogIn = new Intent(getActivity(), LogInActivity.class);
         startActivity(Go_LogIn);

@@ -18,7 +18,7 @@ import com.google.android.material.tabs.TabLayout;
 
 public class TransactFragment extends Fragment {
 
-    //TODO: gonna need to try not to use binder
+    public TransactFragment(){}
 
     private FragmentTransactBinding binding;
     VP_Adapter_Tab_layout vp_adapter_tab_layout;

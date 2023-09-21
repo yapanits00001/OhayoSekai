@@ -70,8 +70,8 @@ public class ForgotPasswordActivity extends AppCompatActivity {
     }
 
     public void openDialogResetPass(){
-        VerifyEmailDialogBox verifyEmailDialogBox = new VerifyEmailDialogBox();
-        verifyEmailDialogBox.show(getSupportFragmentManager(), "Password Reset");
+        ForgetPasswordDialogBox forgetPasswordDialogBox = new ForgetPasswordDialogBox();
+        forgetPasswordDialogBox.show(getSupportFragmentManager(), "Password Reset");
 
     }
 }

@@ -30,6 +30,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -87,11 +88,14 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View v) {
                 RegBinder.progressBar.setVisibility(View.VISIBLE);
                 String Click_email, Click_password, Click_ConfirmPass, MemName, MemID;
+                Double MemLoanBal, MemSavingsBal, defNumbie = 143.24;
                 Click_email = String.valueOf(RegBinder.txtEmail.getText());
                 Click_password = String.valueOf(RegBinder.txtPassword.getText());
                 Click_ConfirmPass = String.valueOf(RegBinder.txtConfirmPassword.getText());
                 MemName = getIntent().getStringExtra("PassMemName");
                 MemID = getIntent().getStringExtra("PassMemID");
+                MemLoanBal = getIntent().getDoubleExtra("PassLoanBalance", defNumbie);
+                MemSavingsBal = getIntent().getDoubleExtra("PassSavingsBalance", defNumbie);
 
                 if (TextUtils.isEmpty(Click_email)){
                     RegBinder.txtEmail.setError("Email cannot be empty!!");
@@ -140,8 +144,18 @@ public class RegisterActivity extends AppCompatActivity {
                                                         SaveUser.put("Mem-Name", MemName);
                                                         SaveUser.put("Mem-Email", Click_email);
                                                         SaveUser.put("Mem-Password", Click_password);
+                                                        SaveUser.put("Mem-Loan_Outstanding_Balance", MemLoanBal);
+                                                        SaveUser.put("Mem-Savings_Balance", MemSavingsBal);
+                                                        SaveUser.put("Mem-Loan-Type", "Short Term Loan");
 
                                                         SignUpRef_DB.set(SaveUser);
+
+                                                        //Update the status of member account in the member records
+                                                        DocumentReference AccStatus = FirebaseFirestore.getInstance().collection("Coop Members").document("Sample Data");
+                                                        Map<String, Object> AccStateUser = new HashMap<>();
+                                                        AccStateUser.put("Account_Registered", true);
+                                                        AccStatus.set(AccStateUser, SetOptions.merge());
+
                                                         Toast.makeText(RegisterActivity.this, "Registered Successfully!!.", Toast.LENGTH_SHORT).show();
                                                         openDialog();
 

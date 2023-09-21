@@ -29,7 +29,7 @@ public class LogInActivity extends AppCompatActivity {
      FirebaseAuth mAuth;
      
      ActivityLogInBinding LIBinder;
-
+/*
     @Override
     public void onStart() {
         super.onStart();
@@ -42,7 +42,7 @@ public class LogInActivity extends AppCompatActivity {
                 finish();
 
         }//TODO: Need i access ang mga specific accounts para mai ayos ung on start
-    }
+    }*/
 
 
     @Override
@@ -142,6 +142,7 @@ public class LogInActivity extends AppCompatActivity {
                                     } else {
                                         Toast.makeText(LogInActivity.this, "Email is not Verified!!.",
                                                 Toast.LENGTH_SHORT).show();
+
                                     }
 
                                 } else {
