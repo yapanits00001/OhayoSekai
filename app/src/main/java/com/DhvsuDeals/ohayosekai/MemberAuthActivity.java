@@ -55,7 +55,8 @@ public class MemberAuthActivity extends AppCompatActivity {
 
     public void SearchMember(String searchRec){
         //check if the user is authenticated
-            DocumentReference searchDocRef = MemCheckCollection.document("Sample Data");
+            DocumentReference searchDocRef = MemCheckCollection.document(searchRec);
+            //TODO:Need for further development of the authentication
             searchDocRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<DocumentSnapshot> task) {

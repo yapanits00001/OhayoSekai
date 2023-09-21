@@ -142,13 +142,13 @@ public class LogInActivity extends AppCompatActivity {
                                     } else {
                                         Toast.makeText(LogInActivity.this, "Email is not Verified!!.",
                                                 Toast.LENGTH_SHORT).show();
-
+                                        mAuth.signOut();
                                     }
 
                                 } else {
                                     Toast.makeText(LogInActivity.this, "Log-In Failed.",
                                             Toast.LENGTH_SHORT).show();
-                                    ;
+                                    mAuth.signOut();
                                 }
                             }
                         });

@@ -32,9 +32,7 @@ public class MainActivity extends AppCompatActivity {
             finish();
         }
 
-
     }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,13 +43,8 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().hide();
 
         Auth = FirebaseAuth.getInstance();
-        /*btnLogOut = findViewById(R.id.btnLogOut);
-        btnFragment_Crud = findViewById(R.id.SwtchFragmentLYT);
-        View_Account = findViewById(R.id.ViewAccount);*/
         User = Auth.getCurrentUser();
-
         Homebinding.NavigationButtons.setOnItemSelectedListener(item -> {
-
             if (item.getItemId() == R.id.HomeNav){
                 replaceFragment(new Home_Fragment());
             } else if (item.getItemId() == R.id.TransNav) {
@@ -63,7 +56,6 @@ public class MainActivity extends AppCompatActivity {
             }
             return true;
         });
-
     }
 
 
