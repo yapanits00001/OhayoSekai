@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/dcreditsign1"
     android:gravity="center"
     android:orientation="vertical"
     android:padding="20dp"
@@ -23,6 +24,7 @@
         android:gravity="center"
         android:text="@string/MemAUTH"
         android:textSize="30sp"
+        android:textColor="@color/white"
         android:textStyle="bold" />
 
 
@@ -49,7 +51,12 @@
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:text="Verify my Member-ID and Name"
-        android:layout_margin="5dp" />
+        android:layout_margin="5dp"
+        android:textColor="#FFFFFF"
+        android:textColorHighlight="#FFFFFF"
+        android:textColorHint="#FFFFFF"
+        android:textColorLink="#FFFFFF"
+        app:backgroundTint="@color/my_custom_color" />
 
 
 

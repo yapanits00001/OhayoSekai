@@ -4,20 +4,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/dcreditsign1"
     android:gravity="center"
     android:orientation="vertical"
     android:padding="20dp"
     tools:context=".RegisterActivity">
 
 
+
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="casual"
-        android:gravity="center"
+        android:layout_height="80dp"
         android:text="@string/SignUp"
-        android:textSize="30sp"
-        android:textStyle="bold" />
+        android:textSize="50sp"
+        android:textColor="@color/white"
+        android:layout_marginTop="50dp"
+        >
+
+
+    </TextView>
+
+
 
 
     <com.google.android.material.textfield.TextInputLayout
@@ -75,7 +82,12 @@
         android:layout_width="wrap_content"
         android:layout_height="45dp"
         android:text="@string/SignUp"
-        android:layout_margin="5dp" />
+        android:layout_margin="5dp"
+        android:textColor="#FFFFFF"
+        android:textColorHighlight="#FFFFFF"
+        android:textColorHint="#FFFFFF"
+        android:textColorLink="#FFFFFF"
+        app:backgroundTint="@color/my_custom_color"/>
 
     <TextView
         android:id="@+id/LogInNow"

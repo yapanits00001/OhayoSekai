@@ -3,6 +3,7 @@ package com.DhvsuDeals.ohayosekai;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -26,6 +27,8 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         setContentView(FPBinding.getRoot());
 
         FBAuth = FirebaseAuth.getInstance();
+
+        getSupportActionBar().hide();
 
 
         FPBinding.btnResetPassword.setOnClickListener(new View.OnClickListener() {
@@ -74,4 +77,6 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         forgetPasswordDialogBox.show(getSupportFragmentManager(), "Password Reset");
 
     }
+
+
 }

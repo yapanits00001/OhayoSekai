@@ -35,6 +35,7 @@ public class LogInActivity extends AppCompatActivity {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
+        getSupportActionBar().hide();
         //if (currentUser != null) {
             if (currentUser != null){
                 Intent Go_Dashboard = new Intent(getApplicationContext(), MainActivity.class);
