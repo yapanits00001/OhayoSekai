@@ -30,7 +30,7 @@ public class Loans_ViewFragment extends Fragment {
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     String User_ID = mAuth.getCurrentUser().getUid();//get the userUID on the firestore to be used as an user ID
     DocumentReference SignUpRef_DB = FirebaseFirestore.getInstance().document("Uses_ACCS_Information/" + User_ID);
-    private static final String KEY_BALANCE = "Mem-Loan_Outstanding_Balance", KEY_NAME = "Mem-Loan-Type";
+    private static final String KEY_BALANCE = "Mem-LoanBalance", KEY_NAME = "Mem-Loan-Type";
     private ListenerRegistration listener;
 
 
@@ -61,10 +61,10 @@ public class Loans_ViewFragment extends Fragment {
                     return;
                 }
                 if (documentSnapshot.exists()){
-                    Double NumBalance = documentSnapshot.getDouble(KEY_BALANCE);
+                    Long intBalance = documentSnapshot.getLong(KEY_BALANCE);
                     String name = documentSnapshot.getString(KEY_NAME);
 
-                    String txtBalance = String.valueOf(NumBalance);//convert the intbalance into string
+                    String txtBalance = String.valueOf(intBalance);//convert the intbalance into string
                     loansViewBinding.ItemName.setText(name);
                     loansViewBinding.ViewBalance.setText(txtBalance);
 
@@ -78,6 +78,8 @@ public class Loans_ViewFragment extends Fragment {
         super.onStop();
         listener.remove();
     }
+
+
 
     @Override
     public void onDestroyView() {
