@@ -8,16 +8,21 @@
     android:gravity="center"
     android:orientation="vertical"
     android:padding="20dp"
-    tools:context=".MemberAuthActivity">
+    tools:context=".OTPVerActivity">
 
-
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:visibility="gone" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="casual"
         android:gravity="center"
-        android:text="@string/MemAUTH"
+        android:text="OTP VERIFICATION SENT !!"
         android:textSize="30sp"
         android:textColor="@color/white"
         android:textStyle="bold" />
@@ -34,23 +39,18 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:layout_marginTop="10dp"
-            android:hint="@string/member_id" />
+            android:hint="Enter OTP code" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:visibility="gone" />
+
 
     <Button
         android:id="@+id/btnVerify"
         android:layout_marginTop="10dp"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:text="Verify my Member-ID and Name"
+        android:text="Verify OTP code"
         android:layout_margin="5dp"
         android:textColor="#FFFFFF"
         android:textColorHighlight="#FFFFFF"
@@ -58,6 +58,16 @@
         android:textColorLink="#FFFFFF"
         app:backgroundTint="@color/my_custom_color" />
 
-
+    <TextView
+        android:id="@+id/Registration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Resend OTP in 30 sec"
+        android:layout_marginTop="95dp"
+        android:gravity="center"
+        android:textColor="#FFFFFF"
+        android:textColorHighlight="#FEFFFF"
+        android:textColorLink="#FFFFFF"
+        android:textSize="20sp" />
 
 </LinearLayout>

@@ -14,20 +14,28 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.PhoneAuthCredential;
+import com.google.firebase.auth.PhoneAuthOptions;
+import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-public class MemberAuthActivity extends AppCompatActivity {
+import java.util.concurrent.TimeUnit;
 
+public class MemberAuthActivity extends AppCompatActivity {
+    private Long timeoutOTP = 60L;
     private FirebaseAuth MemAuth;
-    FirebaseUser CurUser;
+    private FirebaseUser CurUser;
     private CollectionReference MemCheckCollection;
     private ActivityMemberAuthBinding MemBinder;
-
+    private String verificationCode;
+    private PhoneAuthProvider.ForceResendingToken resendingToken;
+    Intent Go_Register = new Intent(getApplicationContext(), RegisterActivity.class);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,12 +49,16 @@ public class MemberAuthActivity extends AppCompatActivity {
         MemBinder.btnVerify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MemBinder.progressBar.setVisibility(View.VISIBLE);
+                MemBinder.btnVerify.setVisibility(View.GONE);
                 String searchRec = String.valueOf(MemBinder.txtVID.getText()).trim();
                 if (!TextUtils.isEmpty(searchRec)){
                         SearchMember(searchRec);
                 } else {
                     MemBinder.txtVID.setError("Please Fill out the empty Field!!");
                     MemBinder.txtVID.requestFocus();
+                    MemBinder.progressBar.setVisibility(View.GONE);
+                    MemBinder.btnVerify.setVisibility(View.VISIBLE);
                 }
             }
         });
@@ -71,8 +83,10 @@ public class MemberAuthActivity extends AppCompatActivity {
                                         memSavingsBal = docSnapshot.getDouble("Mem_Savings");
                                 String memPhoneNum = docSnapshot.getString("Phone_Number");
 
+
+
                                 Toast.makeText(MemberAuthActivity.this, "Welcome our dear Member " + welcomeName, Toast.LENGTH_SHORT).show();
-                                Intent Go_Register = new Intent(getApplicationContext(), RegisterActivity.class);
+
                                 Go_Register.putExtra("PassMemID", searchRec);
                                 Go_Register.putExtra("PassMemName", welcomeName); //pass the values to the register
                                 Go_Register.putExtra("PassLoanBalance", memLoanBal);
@@ -80,9 +94,8 @@ public class MemberAuthActivity extends AppCompatActivity {
                                 Go_Register.putExtra("PassSavingsBalance", memSavingsBal);
                                 Go_Register.putExtra("PassPhoneNumber", memPhoneNum);
 
+                                sendOTP(memPhoneNum, false);
 
-                                startActivity(Go_Register);
-                                finish();
 
                             }
 
@@ -95,6 +108,38 @@ public class MemberAuthActivity extends AppCompatActivity {
                 }
             });
 
+    }
+
+    public void sendOTP(String PhoneNumber, boolean isResend){
+        MemBinder.progressBar.setVisibility(View.VISIBLE);
+        MemBinder.btnVerify.setVisibility(View.GONE);
+
+        PhoneAuthOptions.Builder builder = PhoneAuthOptions.newBuilder(MemAuth).setPhoneNumber(PhoneNumber)
+                .setTimeout(timeoutOTP, TimeUnit.SECONDS)
+                .setActivity(this).setCallbacks(new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+                    @Override
+                    public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
+                        startActivity(Go_Register);
+                        finish();
+                    }
+
+                    @Override
+                    public void onVerificationFailed(@NonNull FirebaseException e) {
+
+                    }
+
+                    @Override
+                    public void onCodeSent(@NonNull String s, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
+                        super.onCodeSent(s, forceResendingToken);
+                        verificationCode = s;
+                        resendingToken = forceResendingToken;
+                    }
+                });
+        if (isResend){
+            PhoneAuthProvider.verifyPhoneNumber(builder.setForceResendingToken(resendingToken).build());
+        } else {
+            PhoneAuthProvider.verifyPhoneNumber(builder.build());
+        }
     }
     @Override
     public void onBackPressed(){
