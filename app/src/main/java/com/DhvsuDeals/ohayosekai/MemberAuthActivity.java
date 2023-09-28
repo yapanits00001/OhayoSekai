@@ -35,7 +35,7 @@ public class MemberAuthActivity extends AppCompatActivity {
         setContentView(MemBinder.getRoot());
         MemAuth = FirebaseAuth.getInstance();
         CurUser = MemAuth.getCurrentUser();
-        MemCheckCollection = FirebaseFirestore.getInstance().collection("Member_Check_SignUp");
+        MemCheckCollection = FirebaseFirestore.getInstance().collection("Coop Members");
         getSupportActionBar().hide();
 
         MemBinder.btnVerify.setOnClickListener(new View.OnClickListener() {
@@ -62,15 +62,25 @@ public class MemberAuthActivity extends AppCompatActivity {
                     if (task.isSuccessful()){
                         DocumentSnapshot docSnapshot = task.getResult();
                         if (docSnapshot.exists()){
-                            String compAcc_Status = docSnapshot.getString("Account_Status");
-                            if (compAcc_Status == "Registered"){
+                            Boolean compAcc_Status = docSnapshot.getBoolean("Account_Registered");
+                            if (compAcc_Status == true){
                                 Toast.makeText(MemberAuthActivity.this, "Account Already Registered!!", Toast.LENGTH_SHORT).show();
                             } else{
                                 String welcomeName = docSnapshot.getString("Mem_Name");
+                                Double memLoanBal = docSnapshot.getDouble("Mem_Outstanding_Balance"),
+                                        memSavingsBal = docSnapshot.getDouble("Mem_Savings");
+                                String memPhoneNum = docSnapshot.getString("Phone_Number");
+
                                 Toast.makeText(MemberAuthActivity.this, "Welcome our dear Member " + welcomeName, Toast.LENGTH_SHORT).show();
                                 Intent Go_Register = new Intent(getApplicationContext(), RegisterActivity.class);
                                 Go_Register.putExtra("PassMemID", searchRec);
                                 Go_Register.putExtra("PassMemName", welcomeName); //pass the values to the register
+                                Go_Register.putExtra("PassLoanBalance", memLoanBal);
+                                Go_Register.putExtra("PassSavingsBalance", memSavingsBal);
+                                Go_Register.putExtra("PassSavingsBalance", memSavingsBal);
+                                Go_Register.putExtra("PassPhoneNumber", memPhoneNum);
+
+
                                 startActivity(Go_Register);
                                 finish();
 

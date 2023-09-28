@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -13,15 +14,23 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.DhvsuDeals.ohayosekai.databinding.FragmentHomeBinding;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.ListenerRegistration;
 
 
 public class Home_Fragment extends Fragment {
 
     private FragmentHomeBinding HBinder;
-    FirebaseFirestore db;
-    ProgressDialog progressDialog;
-    VP_Adapter_LOANS_SAVINGS vp_adapter_loans_savings;
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    String User_ID = mAuth.getCurrentUser().getUid();//get the userUID on the firestore to be used as an user ID
+    DocumentReference SignUpRef_DB = FirebaseFirestore.getInstance().document("Uses_ACCS_Information/" + User_ID);
+    private static final String KEYLoan_BALANCE = "Mem_Loan_Outstanding_Balance", KEYSavings_Balance = "Mem_Savings_Balance";
+    private ListenerRegistration listener;
 
 
 
@@ -36,34 +45,42 @@ public class Home_Fragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        vp_adapter_loans_savings = new VP_Adapter_LOANS_SAVINGS(getActivity());
-        HBinder.VPLoansSavings.setAdapter(vp_adapter_loans_savings);
 
-        HBinder.VPLoansSavings.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            }
 
+
+    @Override
+    public void onStart(){
+        super.onStart();
+        listener = SignUpRef_DB.addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
-            public void onPageSelected(int position) {
+            public void onEvent(DocumentSnapshot documentSnapshot , FirebaseFirestoreException error) {
 
-                updateIndicator(position);
+                if (error != null){
+                    Toast.makeText(getActivity(), "Error while loading!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (documentSnapshot.exists()){
+                    Account_Info_Note note = documentSnapshot.toObject(Account_Info_Note.class);
+
+                    double LoanBalance = note.getMem_Loan_Outstanding_Balance();
+                    double SavingsBalance = note.getMem_Savings_Balance();
+
+
+                    //String txtBalance = String.valueOf(LoanBalance);convert the intbalance into string
+                    HBinder.ViewLoanBalance.setText(String.valueOf(LoanBalance));
+                    HBinder.ViewSavingsBalance.setText(String.valueOf(SavingsBalance));
+
+                }
             }
         });
-
-        HBinder.VPLoansSavings.setPageTransformer(new PageTransformer());
-
-
     }
 
-    private void updateIndicator(int position){
-        HBinder.indicatorVP.removeAllViews();
-        for (int i = 0; i < vp_adapter_loans_savings.getItemCount(); i++){
-            ImageView indicator = new ImageView(getActivity());
-            indicator.setImageResource(
-                    i == position ? R.drawable.selected_indicator : R.drawable.unselected_indicator
-            );
-            HBinder.indicatorVP.addView(indicator);
-        }
+    @Override
+    public void onStop(){
+        super.onStop();
+        listener.remove();
     }
-
 
 
     @Override

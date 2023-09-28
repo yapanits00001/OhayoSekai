@@ -87,7 +87,7 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 RegBinder.progressBar.setVisibility(View.VISIBLE);
-                String Click_email, Click_password, Click_ConfirmPass, MemName, MemID;
+                String Click_email, Click_password, Click_ConfirmPass, MemName, MemID, MemPhoneNumber;
                 Double MemLoanBal, MemSavingsBal, defNumbie = 143.24;
                 Click_email = String.valueOf(RegBinder.txtEmail.getText());
                 Click_password = String.valueOf(RegBinder.txtPassword.getText());
@@ -96,6 +96,7 @@ public class RegisterActivity extends AppCompatActivity {
                 MemID = getIntent().getStringExtra("PassMemID");
                 MemLoanBal = getIntent().getDoubleExtra("PassLoanBalance", defNumbie);
                 MemSavingsBal = getIntent().getDoubleExtra("PassSavingsBalance", defNumbie);
+                MemPhoneNumber = getIntent().getStringExtra("PassPhoneNumber");
 
                 if (TextUtils.isEmpty(Click_email)){
                     RegBinder.txtEmail.setError("Email cannot be empty!!");
@@ -140,18 +141,19 @@ public class RegisterActivity extends AppCompatActivity {
                                                         User_ID = mAuth.getCurrentUser().getUid();//get the userUID on the firestore to be used as an user ID
                                                         DocumentReference SignUpRef_DB = FirebaseFirestore.getInstance().collection("Uses_ACCS_Information").document(User_ID);
                                                         Map<String, Object> SaveUser = new HashMap<>();
-                                                        SaveUser.put("Mem-ID", MemID);
-                                                        SaveUser.put("Mem-Name", MemName);
-                                                        SaveUser.put("Mem-Email", Click_email);
-                                                        SaveUser.put("Mem-Password", Click_password);
-                                                        SaveUser.put("Mem-Loan_Outstanding_Balance", MemLoanBal);
-                                                        SaveUser.put("Mem-Savings_Balance", MemSavingsBal);
-                                                        SaveUser.put("Mem-Loan-Type", "Short Term Loan");
+                                                        SaveUser.put("Mem_ID", MemID);
+                                                        SaveUser.put("Mem_Name", MemName);
+                                                        SaveUser.put("Mem_Email", Click_email);
+                                                        SaveUser.put("Mem_Password", Click_password);
+                                                        SaveUser.put("Mem_Loan_Outstanding_Balance", MemLoanBal);
+                                                        SaveUser.put("Mem_Savings_Balance", MemSavingsBal);
+                                                        SaveUser.put("Mem_Loan_Type", "Short Term Loan");
+                                                        SaveUser.put("Mem_Phone_Number", MemPhoneNumber);
 
                                                         SignUpRef_DB.set(SaveUser);
 
                                                         //Update the status of member account in the member records
-                                                        DocumentReference AccStatus = FirebaseFirestore.getInstance().collection("Coop Members").document("Sample Data");
+                                                        DocumentReference AccStatus = FirebaseFirestore.getInstance().collection("Coop Members").document(MemID);
                                                         Map<String, Object> AccStateUser = new HashMap<>();
                                                         AccStateUser.put("Account_Registered", true);
                                                         AccStatus.set(AccStateUser, SetOptions.merge());
