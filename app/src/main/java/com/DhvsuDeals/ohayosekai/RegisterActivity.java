@@ -159,6 +159,7 @@ public class RegisterActivity extends AppCompatActivity {
                                                         AccStatus.set(AccStateUser, SetOptions.merge());
 
                                                         Toast.makeText(RegisterActivity.this, "Registered Successfully!!.", Toast.LENGTH_SHORT).show();
+                                                        mAuth.signOut();
                                                         openDialog();
 
                                                     } else {
@@ -199,5 +200,11 @@ public class RegisterActivity extends AppCompatActivity {
         VerifyEmailDialogBox verifyEmailDialogBox = new VerifyEmailDialogBox();
         verifyEmailDialogBox.show(getSupportFragmentManager(), "email notif verifier");
 
+    }
+    @Override
+    public void onBackPressed(){
+        Intent Go_memAuth = new Intent(getApplicationContext(), MemberAuthActivity.class);
+        startActivity(Go_memAuth);
+        finish();
     }
 }

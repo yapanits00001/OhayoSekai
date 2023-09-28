@@ -77,6 +77,12 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         forgetPasswordDialogBox.show(getSupportFragmentManager(), "Password Reset");
 
     }
+    @Override
+    public void onBackPressed(){
+        Intent Go_LogIn = new Intent(getApplicationContext(), LogInActivity.class);
+        startActivity(Go_LogIn);
+        finish();
+    }
 
 
 }

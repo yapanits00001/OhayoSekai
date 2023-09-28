@@ -29,19 +29,18 @@ import java.util.concurrent.TimeUnit;
 
 public class MemberAuthActivity extends AppCompatActivity {
     private Long timeoutOTP = 60L;
-    private FirebaseAuth MemAuth;
+    private FirebaseAuth MemAuth = FirebaseAuth.getInstance();
     private FirebaseUser CurUser;
     private CollectionReference MemCheckCollection;
     private ActivityMemberAuthBinding MemBinder;
     private String verificationCode;
     private PhoneAuthProvider.ForceResendingToken resendingToken;
-    Intent Go_Register = new Intent(getApplicationContext(), RegisterActivity.class);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         MemBinder = ActivityMemberAuthBinding.inflate(getLayoutInflater());
         setContentView(MemBinder.getRoot());
-        MemAuth = FirebaseAuth.getInstance();
         CurUser = MemAuth.getCurrentUser();
         MemCheckCollection = FirebaseFirestore.getInstance().collection("Coop Members");
         getSupportActionBar().hide();
@@ -79,12 +78,12 @@ public class MemberAuthActivity extends AppCompatActivity {
                                 Toast.makeText(MemberAuthActivity.this, "Account Already Registered!!", Toast.LENGTH_SHORT).show();
                             } else{
                                 String welcomeName = docSnapshot.getString("Mem_Name");
-                                Double memLoanBal = docSnapshot.getDouble("Mem_Outstanding_Balance"),
-                                        memSavingsBal = docSnapshot.getDouble("Mem_Savings");
+                                Double memLoanBal = docSnapshot.getDouble("Mem_Outstanding_Balance");
+                                Double memSavingsBal = docSnapshot.getDouble("Mem_Savings");
                                 String memPhoneNum = docSnapshot.getString("Phone_Number");
 
-
-
+                                sendOTP(memPhoneNum, false);
+                                Intent Go_Register = new Intent(getApplicationContext(), RegisterActivity.class);
                                 Toast.makeText(MemberAuthActivity.this, "Welcome our dear Member " + welcomeName, Toast.LENGTH_SHORT).show();
 
                                 Go_Register.putExtra("PassMemID", searchRec);
@@ -94,21 +93,27 @@ public class MemberAuthActivity extends AppCompatActivity {
                                 Go_Register.putExtra("PassSavingsBalance", memSavingsBal);
                                 Go_Register.putExtra("PassPhoneNumber", memPhoneNum);
 
-                                sendOTP(memPhoneNum, false);
 
+                                startActivity(Go_Register);
+                                finish();
 
                             }
 
                         } else {
                             Toast.makeText(MemberAuthActivity.this, "Member doesn't exist!!", Toast.LENGTH_SHORT).show();
+                            MemBinder.progressBar.setVisibility(View.GONE);
+                            MemBinder.btnVerify.setVisibility(View.VISIBLE);
                         }
                     } else {
                         Toast.makeText(MemberAuthActivity.this, "Error Fetching data!!", Toast.LENGTH_SHORT).show();
+                        MemBinder.progressBar.setVisibility(View.GONE);
+                        MemBinder.btnVerify.setVisibility(View.VISIBLE);
                     }
                 }
             });
 
     }
+
 
     public void sendOTP(String PhoneNumber, boolean isResend){
         MemBinder.progressBar.setVisibility(View.VISIBLE);
@@ -119,8 +124,7 @@ public class MemberAuthActivity extends AppCompatActivity {
                 .setActivity(this).setCallbacks(new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
                     @Override
                     public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
-                        startActivity(Go_Register);
-                        finish();
+
                     }
 
                     @Override

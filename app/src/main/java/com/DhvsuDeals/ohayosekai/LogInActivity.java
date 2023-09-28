@@ -27,8 +27,21 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class LogInActivity extends AppCompatActivity {
      FirebaseAuth mAuth;
+     FirebaseUser User;
      
      ActivityLogInBinding LIBinder;
+
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        User = mAuth.getCurrentUser();
+        if(User != null){
+            Intent Go_Dashboard = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(Go_Dashboard);
+            finish();
+        }
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,17 +91,6 @@ public class LogInActivity extends AppCompatActivity {
         LIBinder.ForgotPassword.setMovementMethod(LinkMovementMethod.getInstance());
 
 
-
-
-       /* LIBinder.Registration.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent Go_Register = new Intent(getApplicationContext(), RegisterActivity.class);
-                startActivity(Go_Register);
-                finish();
-            }
-
-        });*/
 
 
         LIBinder.btnLogIn.setOnClickListener(new View.OnClickListener() {

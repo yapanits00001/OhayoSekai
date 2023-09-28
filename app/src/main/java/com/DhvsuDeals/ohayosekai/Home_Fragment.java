@@ -26,8 +26,7 @@ import com.google.firebase.firestore.ListenerRegistration;
 public class Home_Fragment extends Fragment {
 
     private FragmentHomeBinding HBinder;
-    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
-    String User_ID = mAuth.getCurrentUser().getUid();//get the userUID on the firestore to be used as an user ID
+    String User_ID = FirebaseAuth.getInstance().getCurrentUser().getUid();//get the userUID on the firestore to be used as an user ID
     DocumentReference SignUpRef_DB = FirebaseFirestore.getInstance().document("Uses_ACCS_Information/" + User_ID);
     private static final String KEYLoan_BALANCE = "Mem_Loan_Outstanding_Balance", KEYSavings_Balance = "Mem_Savings_Balance";
     private ListenerRegistration listener;
