@@ -53,6 +53,7 @@ public class Home_Fragment extends Fragment {
             public void onClick(View v) {
                 Go_Forms.putExtra("PassLoanTermLimit", 36L);//number of months
                 Go_Forms.putExtra("PassLoanType", "Commodity Loan"); //pass the values to the Calculator
+                Go_Forms.putExtra("PassButton", "Apply Commodity Loan");//passing the label for button
                 startActivity(Go_Forms);
 
             }
@@ -64,6 +65,7 @@ public class Home_Fragment extends Fragment {
             public void onClick(View v) {
                 Go_Forms.putExtra("PassLoanTermLimit", 9L);//number of months
                 Go_Forms.putExtra("PassLoanType", "Short Term Loan"); //pass the values to the Calculator
+                Go_Forms.putExtra("PassButton", "Apply Short Term Loan");//passing the label for button
                 startActivity(Go_Forms);
 
 
@@ -76,6 +78,7 @@ public class Home_Fragment extends Fragment {
             public void onClick(View v) {
                 Go_Forms.putExtra("PassLoanTermLimit", 12L);//number of months
                 Go_Forms.putExtra("PassLoanType", "Christmas Loan"); //pass the values to the Calculator
+                Go_Forms.putExtra("PassButton", "Apply Christmas Loan");//passing the label for button
                 startActivity(Go_Forms);
 
             }
@@ -87,6 +90,7 @@ public class Home_Fragment extends Fragment {
             public void onClick(View v) {
                 Go_Forms.putExtra("PassLoanTermLimit", 12L);//number of months
                 Go_Forms.putExtra("PassLoanType", "Advance Mid-Year Loan"); //pass the values to the Calculator
+                Go_Forms.putExtra("PassButton", "Apply Advance Mid-Year Loan");//passing the label for button
                 startActivity(Go_Forms);
             }
         });//end of the advanced mid year loan button

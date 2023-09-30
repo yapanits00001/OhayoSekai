@@ -5,9 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".LoanCostCalculatorActivity"
-    android:layout_gravity="center_horizontal">
+    android:layout_gravity="center_horizontal"
+    android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/CrdLoanCalculator"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/main_frame"
@@ -38,23 +40,34 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
-                    android:layout_marginStart="34dp"
-                    android:layout_marginTop="69dp"
-                    android:text="@string/title_BalLoan"
+                    android:layout_marginStart="35dp"
+                    android:layout_marginTop="63dp"
+                    android:text="Loan Type"
                     android:textColor="#FFFFFF"
                     android:textColorHighlight="#FFFFFF"
                     android:textColorLink="#FFFFFF"
                     android:textSize="18sp" />
 
+                <EditText
+                    android:id="@+id/editTextText"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/CalLoanType"
+                    android:layout_marginStart="19dp"
+                    android:layout_marginTop="-11dp"
+                    android:layout_marginEnd="-29dp"
+                    android:layout_toEndOf="@+id/CalLoanType"
+                    android:inputType="text"
+                    android:text="0" />
+
                 <TextView
                     android:id="@+id/CAlLoanTerm"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginStart="-104dp"
-                    android:layout_marginTop="98dp"
-                    android:layout_marginBottom="-3dp"
-                    android:layout_toEndOf="@+id/CalLoanType"
+                    android:layout_alignTop="@+id/LblLoanTerms"
+                    android:layout_marginStart="14dp"
+                    android:layout_marginTop="-4dp"
+                    android:layout_toEndOf="@+id/LblLoanTerms"
                     android:hint="-------------"
                     android:textColor="#FFFFFF"
                     android:textColorHighlight="#FFFFFF"
@@ -63,14 +76,14 @@
                     android:textSize="25sp" />
 
                 <TextView
+                    android:id="@+id/LblLoanTerms"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/CAlLoanTerm"
-                    android:layout_marginStart="-156dp"
-                    android:layout_marginTop="-25dp"
-                    android:layout_marginEnd="22dp"
-                    android:layout_toEndOf="@+id/CAlLoanTerm"
-                    android:text="Term M/"
+                    android:layout_below="@+id/CalLoanType"
+                    android:layout_alignStart="@+id/CalLoanType"
+                    android:layout_marginStart="7dp"
+                    android:layout_marginTop="34dp"
+                    android:text="Loan Term/Months"
                     android:textColor="#FFFFFF"
                     android:textColorHighlight="#FFFFFF"
                     android:textColorHint="#FFFFFF"
@@ -78,11 +91,339 @@
                     android:textSize="15sp" />
 
 
+                    <TextView
+                        android:id="@+id/ViewInterestPercent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/LblLoanTerms"
+                        android:layout_alignStart="@+id/LblLoanTerms"
+                        android:layout_marginStart="7dp"
+                        android:layout_marginTop="15dp"
+                        android:hint="1"
+                        android:textColor="#FFFFFF"
+                        android:textColorHighlight="#FFFFFF"
+                        android:textColorHint="#FFFFFF"
+                        android:textColorLink="#FFFFFF"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/LblInterest"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignTop="@+id/ViewInterestPercent"
+                        android:layout_marginStart="2dp"
+                        android:layout_marginTop="0dp"
+                        android:layout_toEndOf="@+id/ViewInterestPercent"
+                        android:text="% interest / Month  ₱"
+                        android:textColor="#FFFFFF"
+                        android:textColorHighlight="#FFFFFF"
+                        android:textColorHint="#FFFFFF"
+                        android:textColorLink="#FFFFFF"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/ViewTotalInterest"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignTop="@+id/LblInterest"
+                        android:layout_marginStart="7dp"
+                        android:layout_marginTop="0dp"
+                        android:layout_toEndOf="@+id/LblInterest"
+                        android:text="0"
+                        android:textColor="#FFFFFF"
+                        android:textColorHighlight="#FFFFFF"
+                        android:textColorHint="#FFFFFF"
+                        android:textColorLink="#FFFFFF"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/OriginationFeePerce"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/ViewInterestPercent"
+                        android:layout_alignStart="@+id/LblLoanTerms"
+                        android:layout_marginStart="7dp"
+                        android:layout_marginTop="12dp"
+                        android:hint="3.7"
+                        android:textColor="#FFFFFF"
+                        android:textColorHighlight="#FFFFFF"
+                        android:textColorHint="#FFFFFF"
+                        android:textColorLink="#FFFFFF"
+                        android:textSize="15sp" />
+
+                    <TextView
+                                android:id="@+id/LblOrigination"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignTop="@+id/OriginationFeePerce"
+                                android:layout_marginStart="2dp"
+                                android:layout_marginTop="0dp"
+                                android:layout_toEndOf="@+id/OriginationFeePerce"
+                                android:text="% Loan Origination Fee  ₱"
+                                android:textColor="#FFFFFF"
+                                android:textColorHighlight="#FFFFFF"
+                                android:textColorHint="#FFFFFF"
+                                android:textColorLink="#FFFFFF"
+                                android:textSize="15sp" />
+
+                            <TextView
+                                android:id="@+id/ViewtotalOrigination"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignTop="@+id/LblOrigination"
+                                android:layout_marginStart="7dp"
+                                android:layout_marginTop="0dp"
+                                android:layout_toEndOf="@+id/LblOrigination"
+                                android:text="0"
+                                android:textColor="#FFFFFF"
+                                android:textColorHighlight="#FFFFFF"
+                                android:textColorHint="#FFFFFF"
+                                android:textColorLink="#FFFFFF"
+                                android:textSize="15sp" />
+
+                                    <TextView
+                                        android:id="@+id/ServiceFeePerce"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_below="@+id/OriginationFeePerce"
+                                        android:layout_alignStart="@+id/OriginationFeePerce"
+                                        android:layout_marginStart="19dp"
+                                        android:layout_marginTop="10dp"
+                                        android:hint="1.5"
+                                        android:textColor="#FFFFFF"
+                                        android:textColorHighlight="#FFFFFF"
+                                        android:textColorHint="#FFFFFF"
+                                        android:textColorLink="#FFFFFF"
+                                        android:textSize="12sp" />
+
+                                    <TextView
+                                        android:id="@+id/LblServiceFee"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignTop="@+id/ServiceFeePerce"
+                                        android:layout_marginStart="2dp"
+                                        android:layout_marginTop="0dp"
+                                        android:layout_toEndOf="@+id/ServiceFeePerce"
+                                        android:text="% Service Fee  ₱"
+                                        android:textColor="#FFFFFF"
+                                        android:textColorHighlight="#FFFFFF"
+                                        android:textColorHint="#FFFFFF"
+                                        android:textColorLink="#FFFFFF"
+                                        android:textSize="12sp" />
+
+                                    <TextView
+                                        android:id="@+id/ViewtotalServiceFee"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignTop="@+id/LblServiceFee"
+                                        android:layout_marginStart="7dp"
+                                        android:layout_marginTop="0dp"
+                                        android:layout_toEndOf="@+id/LblServiceFee"
+                                        android:text="0"
+                                        android:textColor="#FFFFFF"
+                                        android:textColorHighlight="#FFFFFF"
+                                        android:textColorHint="#FFFFFF"
+                                        android:textColorLink="#FFFFFF"
+                                        android:textSize="12sp" />
+
+                                    <TextView
+                                        android:id="@+id/MutualFundPerce"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_below="@+id/ServiceFeePerce"
+                                        android:layout_alignStart="@+id/OriginationFeePerce"
+                                        android:layout_marginStart="19dp"
+                                        android:layout_marginTop="5dp"
+                                        android:hint="1.2"
+                                        android:textColor="#FFFFFF"
+                                        android:textColorHighlight="#FFFFFF"
+                                        android:textColorHint="#FFFFFF"
+                                        android:textColorLink="#FFFFFF"
+                                        android:textSize="12sp" />
+
+                                    <TextView
+                                        android:id="@+id/LblMutualFund"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignTop="@+id/MutualFundPerce"
+                                        android:layout_marginStart="2dp"
+                                        android:layout_marginTop="0dp"
+                                        android:layout_toEndOf="@+id/MutualFundPerce"
+                                        android:text="% MutualFund  ₱"
+                                        android:textColor="#FFFFFF"
+                                        android:textColorHighlight="#FFFFFF"
+                                        android:textColorHint="#FFFFFF"
+                                        android:textColorLink="#FFFFFF"
+                                        android:textSize="12sp" />
+
+                                    <TextView
+                                        android:id="@+id/ViewtotalMutualFund"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignTop="@+id/LblMutualFund"
+                                        android:layout_marginStart="7dp"
+                                        android:layout_marginTop="0dp"
+                                        android:layout_toEndOf="@+id/LblMutualFund"
+                                        android:text="0"
+                                        android:textColor="#FFFFFF"
+                                        android:textColorHighlight="#FFFFFF"
+                                        android:textColorHint="#FFFFFF"
+                                        android:textColorLink="#FFFFFF"
+                                        android:textSize="12sp" />
+
+                                    <TextView
+                                        android:id="@+id/InsurancePerce"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_below="@+id/MutualFundPerce"
+                                        android:layout_alignStart="@+id/OriginationFeePerce"
+                                        android:layout_marginStart="19dp"
+                                        android:layout_marginTop="5dp"
+                                        android:hint="1"
+                                        android:textColor="#FFFFFF"
+                                        android:textColorHighlight="#FFFFFF"
+                                        android:textColorHint="#FFFFFF"
+                                        android:textColorLink="#FFFFFF"
+                                        android:textSize="12sp" />
+
+                                    <TextView
+                                        android:id="@+id/LblInsurance"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignTop="@+id/InsurancePerce"
+                                        android:layout_marginStart="2dp"
+                                        android:layout_marginTop="0dp"
+                                        android:layout_toEndOf="@+id/InsurancePerce"
+                                        android:text="% Insurance  ₱"
+                                        android:textColor="#FFFFFF"
+                                        android:textColorHighlight="#FFFFFF"
+                                        android:textColorHint="#FFFFFF"
+                                        android:textColorLink="#FFFFFF"
+                                        android:textSize="12sp" />
+
+                                    <TextView
+                                        android:id="@+id/ViewtotalInsurance"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignTop="@+id/LblInsurance"
+                                        android:layout_marginStart="7dp"
+                                        android:layout_marginTop="0dp"
+                                        android:layout_toEndOf="@+id/LblInsurance"
+                                        android:text="0"
+                                        android:textColor="#FFFFFF"
+                                        android:textColorHighlight="#FFFFFF"
+                                        android:textColorHint="#FFFFFF"
+                                        android:textColorLink="#FFFFFF"
+                                        android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/LblAmountPayableLoan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/CalLoanType"
+                    android:layout_alignStart="@+id/CalLoanType"
+                    android:layout_marginStart="7dp"
+                    android:layout_marginTop="200dp"
+                    android:hint="Amount Payable ₱"
+                    android:textColor="#FFFFFF"
+                    android:textColorHighlight="#FFFFFF"
+                    android:textColorHint="#FFFFFF"
+                    android:textColorLink="#FFFFFF"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/ViewTotalAmountPayable"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/LblAmountPayableLoan"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_toEndOf="@+id/LblAmountPayableLoan"
+                    android:text="0"
+                    android:textColor="#FFFFFF"
+                    android:textColorHighlight="#FFFFFF"
+                    android:textColorHint="#FFFFFF"
+                    android:textColorLink="#FFFFFF"
+                    android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/LblMonthlyDue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/LblAmountPayableLoan"
+                        android:layout_alignStart="@+id/LblAmountPayableLoan"
+                        android:layout_marginStart="7dp"
+                        android:layout_marginTop="10dp"
+                        android:hint="Monthly Due ₱"
+                        android:textColor="#FFFFFF"
+                        android:textColorHighlight="#FFFFFF"
+                        android:textColorHint="#FFFFFF"
+                        android:textColorLink="#FFFFFF"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/ViewTotalMonthlyDue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignTop="@+id/LblMonthlyDue"
+                        android:layout_marginStart="2dp"
+                        android:layout_marginTop="0dp"
+                        android:layout_toEndOf="@+id/LblMonthlyDue"
+                        android:text="0"
+                        android:textColor="#FFFFFF"
+                        android:textColorHighlight="#FFFFFF"
+                        android:textColorHint="#FFFFFF"
+                        android:textColorLink="#FFFFFF"
+                        android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/LblAmountReceivableLoan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/CalLoanType"
+                    android:layout_alignStart="@+id/CalLoanType"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginTop="270dp"
+                    android:hint="Amount Receivable ₱"
+                    android:textColor="#FFFFFF"
+                    android:textColorHighlight="#FFFFFF"
+                    android:textColorHint="#FFFFFF"
+                    android:textColorLink="#FFFFFF"
+                    android:textSize="22sp" />
+
+                <TextView
+                    android:id="@+id/ViewTotalAmountReceivable"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/LblAmountReceivableLoan"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_toEndOf="@+id/LblAmountReceivableLoan"
+                    android:text="0"
+                    android:textColor="#FFFFFF"
+                    android:textColorHighlight="#FFFFFF"
+                    android:textColorHint="#FFFFFF"
+                    android:textColorLink="#FFFFFF"
+                    android:textSize="22sp" />
+
             </RelativeLayout>
 
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
 
+    <Button
+        android:id="@+id/btnApplyLoan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="Apply "
+        android:textColor="#FFFFFF"
+        android:textColorHighlight="#FFFFFF"
+        android:textColorHint="#FFFFFF"
+        android:textColorLink="#FFFFFF"
+        app:backgroundTint="@color/my_custom_color" />
 
 </LinearLayout>
