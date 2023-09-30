@@ -25,10 +25,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         FPBinding = ActivityForgotPasswordBinding.inflate(getLayoutInflater());
         setContentView(FPBinding.getRoot());
-
         FBAuth = FirebaseAuth.getInstance();
-
-
 
         FPBinding.btnResetPassword.setOnClickListener(new View.OnClickListener() {
             @Override
