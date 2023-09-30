@@ -1,16 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProfileFragment">
+    tools:context=".ProfileFragment"
+    android:orientation="vertical"
+    >
+
+    <Button
+        android:id="@+id/btncli"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Change Login Information" />
+
+    <Button
+        android:id="@+id/btnPwd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Change Password/MPin" />
+    <Button
+        android:id="@+id/btnpp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Privacy Policy" />
+
+    <Button
+        android:id="@+id/btnta"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Terms of Agreement" />
 
     <Button
         android:id="@+id/btnLogOut"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:gravity="center_horizontal"
+        android:layout_gravity="center_horizontal"
         android:text="@string/log_out" />
 
-</FrameLayout>
+</LinearLayout>
