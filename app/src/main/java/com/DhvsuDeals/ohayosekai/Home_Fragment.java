@@ -1,6 +1,7 @@
 package com.DhvsuDeals.ohayosekai;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -44,6 +45,51 @@ public class Home_Fragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        Intent Go_Forms = new Intent(getActivity(), LoanCostCalculatorActivity.class);
+
+        //start of commodity loan button
+        HBinder.CommodityLoanbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Go_Forms.putExtra("PassLoanTermLimit", 36L);//number of months
+                Go_Forms.putExtra("PassLoanType", "Commodity Loan"); //pass the values to the Calculator
+                startActivity(Go_Forms);
+
+            }
+        });//end for the button ofcommodity loan
+
+        //start of short term loan button
+        HBinder.ShortTermLoanbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Go_Forms.putExtra("PassLoanTermLimit", 9L);//number of months
+                Go_Forms.putExtra("PassLoanType", "Short Term Loan"); //pass the values to the Calculator
+                startActivity(Go_Forms);
+
+
+            }
+        });//end of short term loan button
+
+        //start of the christmas loan button
+        HBinder.ChristmasLoanbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Go_Forms.putExtra("PassLoanTermLimit", 12L);//number of months
+                Go_Forms.putExtra("PassLoanType", "Christmas Loan"); //pass the values to the Calculator
+                startActivity(Go_Forms);
+
+            }
+        });//end of the christmas loan button
+
+        //start of the advanced mid year loan
+        HBinder.AdvanceMidyearLoanbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Go_Forms.putExtra("PassLoanTermLimit", 12L);//number of months
+                Go_Forms.putExtra("PassLoanType", "Advance Mid-Year Loan"); //pass the values to the Calculator
+                startActivity(Go_Forms);
+            }
+        });//end of the advanced mid year loan button
 
             }
 
@@ -62,6 +108,7 @@ public class Home_Fragment extends Fragment {
                 if (documentSnapshot.exists()){
                     Account_Info_Note note = documentSnapshot.toObject(Account_Info_Note.class);
 
+                    String LoanType = note.getMem_Loan_Type();
                     double LoanBalance = note.getMem_Loan_Outstanding_Balance();
                     double SavingsBalance = note.getMem_Savings_Balance();
 
@@ -69,6 +116,7 @@ public class Home_Fragment extends Fragment {
                     //String txtBalance = String.valueOf(LoanBalance);convert the intbalance into string
                     HBinder.ViewLoanBalance.setText(String.valueOf(LoanBalance));
                     HBinder.ViewSavingsBalance.setText(String.valueOf(SavingsBalance));
+                    HBinder.LoanType.setText(LoanType);
 
                 }
             }

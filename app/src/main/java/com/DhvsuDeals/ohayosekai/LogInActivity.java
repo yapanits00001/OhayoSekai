@@ -50,8 +50,8 @@ public class LogInActivity extends AppCompatActivity {
         setContentView(LIBinder.getRoot());
         mAuth = FirebaseAuth.getInstance();
 
-        Button btnLogIn = findViewById(R.id.btnLogIn);
-        btnLogIn.setBackgroundResource(R.drawable.btn_bg);
+
+        LIBinder.btnLogIn.setBackgroundResource(R.drawable.btn_bg);
 
 
 
@@ -98,9 +98,10 @@ public class LogInActivity extends AppCompatActivity {
             public void onClick(View v) {
                 LIBinder.progressBar.setVisibility(View.VISIBLE);
                 String Click_email, Click_password;
-                Click_email = String.valueOf(LIBinder.txtEmail.getText());
-                Click_password = String.valueOf(LIBinder.txtPassword.getText());
+                Click_email = String.valueOf(LIBinder.txtEmail.getText()).trim();
+                Click_password = String.valueOf(LIBinder.txtPassword.getText()).trim();
 
+                //check if the email and password fields are empty
                 if (TextUtils.isEmpty(Click_email)){
                     LIBinder.txtEmail.setError("Email cannot be empty!!");
                     LIBinder.txtEmail.requestFocus();
@@ -115,24 +116,28 @@ public class LogInActivity extends AppCompatActivity {
                     }
                 }
 
+                //sign in function
                 mAuth.signInWithEmailAndPassword(Click_email, Click_password)
                         .addOnCompleteListener( new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 LIBinder.progressBar.setVisibility(View.GONE);
                                 if (task.isSuccessful()) {
+                                    //user will be logged in if he or she is verified and met the requirements
                                     if (mAuth.getCurrentUser().isEmailVerified()){
                                         Toast.makeText(LogInActivity.this, "Log-In Successful", Toast.LENGTH_SHORT).show();
                                         Intent Go_Dashboard = new Intent(getApplicationContext(), MainActivity.class);
                                         startActivity(Go_Dashboard);
                                         finish();
                                     } else {
+                                        //throws error if email is not verified
                                         Toast.makeText(LogInActivity.this, "Email is not Verified!!.",
                                                 Toast.LENGTH_SHORT).show();
                                         mAuth.signOut();
                                     }
 
                                 } else {
+                                    //shows log in faild if user doesnt met the requirements
                                     Toast.makeText(LogInActivity.this, "Log-In Failed.",
                                             Toast.LENGTH_SHORT).show();
                                     mAuth.signOut();

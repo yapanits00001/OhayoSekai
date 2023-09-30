@@ -76,7 +76,7 @@ public class InboxFragment extends Fragment {
     }
 
 
-    private void EventchangeListener() {
+    private void EventchangeListener() {// function that reloads if the user changed the data in database
         db.collection("SampleInbox").orderBy("Date_Received", Query.Direction.ASCENDING)
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override

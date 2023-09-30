@@ -24,7 +24,8 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth Auth;
     private FirebaseUser User;
     ActivityMainBinding Homebinding;
-    public void onStart() {
+
+    public void onStart() {//check if the user is logged in
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         User = Auth.getCurrentUser();
@@ -34,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
             finish();
         }
 
-    }
+    }//check if the user is logged in - end function
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
         Auth = FirebaseAuth.getInstance();
         User = Auth.getCurrentUser();
+        //code for the navigation buttons of fragments
         Homebinding.NavigationButtons.setOnItemSelectedListener(item -> {
             if (item.getItemId() == R.id.HomeNav){
                 replaceFragment(new Home_Fragment());
@@ -58,14 +60,17 @@ public class MainActivity extends AppCompatActivity {
             }
             return true;
         });
+        //code for the navigation buttons of fragments - end statement
+
     }
 
 
 
-    private void replaceFragment(Fragment fragment){
+    private void replaceFragment(Fragment fragment){ //code for switching different fragments
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.MainFrame,fragment);
         fragmentTransaction.commit();
     }
+    //code for switching different fragments - end statement
 }

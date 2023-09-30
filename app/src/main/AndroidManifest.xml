@@ -15,6 +15,9 @@
         android:theme="@style/Theme.Material3.DayNight"
         tools:targetApi="31">
         <activity
+            android:name=".LoanCostCalculatorActivity"
+            android:exported="false" />
+        <activity
             android:name=".OTPVerActivity"
             android:exported="false" />
         <activity
