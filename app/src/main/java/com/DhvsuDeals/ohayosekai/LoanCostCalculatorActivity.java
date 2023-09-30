@@ -16,9 +16,12 @@ public class LoanCostCalculatorActivity extends AppCompatActivity {
 
         String LoanType = getIntent().getStringExtra("PassLoanType");
         Long LoanTerm = getIntent().getLongExtra("PassLoanTermLimit", 0);
+        String btnApply = getIntent().getStringExtra("PassButton");
+
 
         calculatorBinding.CalLoanType.setText(LoanType);
         calculatorBinding.CAlLoanTerm.setText(String.valueOf(LoanTerm));
+        calculatorBinding.btnApplyLoan.setText(btnApply);
 
     }
 }

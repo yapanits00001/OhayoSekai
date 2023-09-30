@@ -42,7 +42,7 @@ public class MemberAuthActivity extends AppCompatActivity {
         MemBinder = ActivityMemberAuthBinding.inflate(getLayoutInflater());
         setContentView(MemBinder.getRoot());
         MemCheckCollection = FirebaseFirestore.getInstance().collection("Coop Members");
-        getSupportActionBar().hide();
+
 
 
         MemBinder.btnVerify.setOnClickListener(new View.OnClickListener() {

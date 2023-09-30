@@ -43,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
         Homebinding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(Homebinding.getRoot());
         replaceFragment(new Home_Fragment());
-        getSupportActionBar().hide();
 
         Auth = FirebaseAuth.getInstance();
         User = Auth.getCurrentUser();

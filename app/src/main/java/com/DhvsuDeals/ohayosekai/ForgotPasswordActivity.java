@@ -28,7 +28,6 @@ public class ForgotPasswordActivity extends AppCompatActivity {
 
         FBAuth = FirebaseAuth.getInstance();
 
-        getSupportActionBar().hide();
 
 
         FPBinding.btnResetPassword.setOnClickListener(new View.OnClickListener() {
