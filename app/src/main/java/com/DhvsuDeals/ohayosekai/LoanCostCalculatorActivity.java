@@ -2,7 +2,9 @@ package com.DhvsuDeals.ohayosekai;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import com.DhvsuDeals.ohayosekai.databinding.ActivityLoanCostCalculatorBinding;
 
@@ -23,5 +25,14 @@ public class LoanCostCalculatorActivity extends AppCompatActivity {
         calculatorBinding.CAlLoanTerm.setText(String.valueOf(LoanTerm));
         calculatorBinding.btnApplyLoan.setText(btnApply);
 
+        calculatorBinding.btnApplyLoan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent Go_App_Form = new Intent(getApplicationContext(), LoanApplicationFormActivity.class);
+                Go_App_Form.putExtra("PassLoanType", LoanType);
+                startActivity(Go_App_Form);
+                finish();
+            }
+        });
     }
 }

@@ -77,7 +77,7 @@ public class InboxFragment extends Fragment {
 
 
     private void EventchangeListener() {// function that reloads if the user changed the data in database
-        db.collection("SampleInbox").orderBy("Date_Received", Query.Direction.ASCENDING)
+        db.collection("SampleInbox").orderBy("Date_Received", Query.Direction.DESCENDING)
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
@@ -85,7 +85,7 @@ public class InboxFragment extends Fragment {
                     if(progressDialog.isShowing())
                         progressDialog.dismiss();
                     Log.e("Firestore error", error.getMessage());
-                    //Toast.makeText(getActivity(), "Firestore Error!!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Firestore Error!!", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 for (DocumentChange dc : value.getDocumentChanges()){
