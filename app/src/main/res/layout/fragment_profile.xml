@@ -4,37 +4,94 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ProfileFragment"
+    android:background="@drawable/bgmain"
     android:orientation="vertical"
     >
 
-    <Button
-        android:id="@+id/btncli"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Change Login Information" />
 
-    <Button
-        android:id="@+id/btnPwd"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Change Password/MPin" />
-    <Button
-        android:id="@+id/btnpp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Privacy Policy" />
+        android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/btnta"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Terms of Agreement" />
 
-    <Button
-        android:id="@+id/btnLogOut"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="@string/log_out" />
+
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="560dp"
+            android:layout_gravity="bottom"
+            android:background="@drawable/profilebg"/>
+
+        <TextView
+            android:id="@+id/UserT"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-190dp"
+            android:layout_gravity="center"
+            android:text="User Name Profile"
+            android:textColor="#090909"
+            android:textColorHighlight="#FFFFFF"
+            android:textColorLink="#0C0C0C"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/GmailT"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-160dp"
+            android:layout_gravity="center"
+            android:text="userprofile@gmail.com"
+            android:textColor="#090909"
+            android:textColorHighlight="#FFFFFF"
+            android:textColorLink="#0C0C0C"
+            android:textSize="15sp" />
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="230dp"
+            android:orientation="vertical">
+
+
+
+            <Button
+                android:id="@+id/btncli"
+                android:layout_width="331dp"
+                android:layout_height="55dp"
+                android:layout_gravity="center"
+                android:text="Change Login Information" />
+
+            <Button
+                android:id="@+id/btnPwd"
+                android:layout_width="331dp"
+                android:layout_height="55dp"
+                android:layout_gravity="center"
+                android:text="Change Password/MPin" />
+
+            <Button
+                android:id="@+id/btnpp"
+                android:layout_width="331dp"
+                android:layout_height="55dp"
+                android:layout_gravity="center"
+                android:text="Privacy Policy" />
+
+            <Button
+                android:id="@+id/btnta"
+                android:layout_width="331dp"
+                android:layout_height="55dp"
+                android:layout_gravity="center"
+                android:text="Terms of Agreement" />
+
+            <Button
+                android:id="@+id/btnLogOut"
+                android:layout_width="331dp"
+                android:layout_height="55dp"
+                android:layout_gravity="center"
+                android:text="@string/log_out" />
+
+        </LinearLayout>
+    </FrameLayout>
 
 </LinearLayout>
