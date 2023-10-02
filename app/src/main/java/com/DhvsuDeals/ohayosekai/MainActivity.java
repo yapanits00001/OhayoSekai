@@ -91,37 +91,38 @@ public class MainActivity extends AppCompatActivity {
                     System.err.println("Listen failed: " + error);
                 }
                 BadgeCounter = value.size();
+                BadgeDrawable badge = Homebinding.NavigationButtons.getOrCreateBadge(R.id.InboxNav);
+                badge.setBackgroundColor(Color.RED);
+                badge.setBadgeTextColor(Color.WHITE);
+                badge.setMaxCharacterCount(5);
+                badge.setNumber(BadgeCounter);
+                badge.setVisible(true);
+
+                //end notif badge statement
+
+                //code for the navigation buttons of fragments
+                Homebinding.NavigationButtons.setOnItemSelectedListener(item -> {
+                    if (item.getItemId() == R.id.HomeNav){
+                        replaceFragment(new Home_Fragment());
+                    } else if (item.getItemId() == R.id.TransNav) {
+                        replaceFragment(new TransactFragment());
+                    } else if (item.getItemId() == R.id.InboxNav) {
+                        replaceFragment(new InboxFragment());
+                        if (BadgeCounter == 0){
+                            badge.setVisible(false);
+                        } else {
+                            badge.setVisible(true);
+                            badge.setNumber(BadgeCounter);
+                        }
+                    } else if (item.getItemId() == R.id.ProfileNav) {
+                        replaceFragment(new ProfileFragment());
+                    }
+                    return true;
+                });
+                //code for the navigation buttons of fragments - end statement
             }
         });
-        BadgeDrawable badge = Homebinding.NavigationButtons.getOrCreateBadge(R.id.InboxNav);
-        badge.setBackgroundColor(Color.RED);
-        badge.setBadgeTextColor(Color.WHITE);
-        badge.setMaxCharacterCount(5);
-        badge.setNumber(BadgeCounter);
-        badge.setVisible(true);
 
-        //end notif badge statement
-
-        //code for the navigation buttons of fragments
-        Homebinding.NavigationButtons.setOnItemSelectedListener(item -> {
-            if (item.getItemId() == R.id.HomeNav){
-                replaceFragment(new Home_Fragment());
-            } else if (item.getItemId() == R.id.TransNav) {
-                replaceFragment(new TransactFragment());
-            } else if (item.getItemId() == R.id.InboxNav) {
-                replaceFragment(new InboxFragment());
-                if (BadgeCounter == 0){
-                    badge.setVisible(false);
-                } else {
-                    badge.setVisible(true);
-                    badge.setNumber(BadgeCounter);
-                }
-            } else if (item.getItemId() == R.id.ProfileNav) {
-                replaceFragment(new ProfileFragment());
-            }
-            return true;
-        });
-        //code for the navigation buttons of fragments - end statement
 
     }
 
