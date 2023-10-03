@@ -26,15 +26,7 @@
 
             </View>
 
-            <View
-                android:id="@+id/rect2"
-                android:layout_width="317dp"
-                android:layout_height="73dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/fmoney">
-
-            </View>
+           
 
 
             <androidx.cardview.widget.CardView
