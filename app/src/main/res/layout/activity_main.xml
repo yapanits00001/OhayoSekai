@@ -11,11 +11,51 @@
 
 
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:orientation="vertical">
+
+        <View
+            android:id="@+id/logotop"
+            android:layout_width="175dp"
+            android:layout_height="49dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/dclog">
+
+        </View>
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/VPLoansSavings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <LinearLayout
+            android:id="@+id/indicator_VP"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|bottom"
+            android:orientation="horizontal"
+            android:layout_marginVertical="2dp">
+
+            <View
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:background="@drawable/idle_selector_indicator" />
+
+            <View
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:background="@drawable/idle_selector_indicator" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
 
     <FrameLayout
         android:id="@+id/MainFrame"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="300dp"
         android:layout_above="@+id/NavigationButtons"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true">
@@ -34,4 +74,5 @@
         app:itemIconTint="#197940"
         app:itemTextColor="#197940"
         app:menu="@menu/nav_menu" />
+
 </RelativeLayout>

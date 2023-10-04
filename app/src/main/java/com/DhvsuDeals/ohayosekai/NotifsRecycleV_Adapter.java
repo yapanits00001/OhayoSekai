@@ -55,8 +55,6 @@ public class NotifsRecycleV_Adapter extends RecyclerView.Adapter<NotifsRecycleV_
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
         TextView messSender, messDate, messTittle, messContent;
-        String strDateTime;
-        Timestamp tmstmp;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);

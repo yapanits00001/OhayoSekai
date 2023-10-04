@@ -12,6 +12,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.DhvsuDeals.ohayosekai.databinding.FragmentHomeBinding;
@@ -30,6 +32,8 @@ public class Home_Fragment extends Fragment {
     String User_ID = FirebaseAuth.getInstance().getCurrentUser().getUid();//get the userUID on the firestore to be used as an user ID
     DocumentReference SignUpRef_DB = FirebaseFirestore.getInstance().document("Uses_ACCS_Information/" + User_ID);
     private ListenerRegistration listener;
+    VP_Adapter_LOANS_SAVINGS vp_adapter_loans_savings;
+
 
 
 
@@ -45,7 +49,20 @@ public class Home_Fragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Intent Go_Forms = new Intent(getActivity(), LoanCostCalculatorActivity.class);
+/*
+        vp_adapter_loans_savings = new VP_Adapter_LOANS_SAVINGS(getActivity());
+        HBinder.VPLoansSavings.setAdapter(vp_adapter_loans_savings);
 
+        HBinder.VPLoansSavings.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                updateIndicator(position);
+            }
+        });
+
+        HBinder.VPLoansSavings.setPageTransformer(new PageTransformer());
+
+*/
         //start of commodity loan button
         HBinder.CommodityLoanbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,43 +113,18 @@ public class Home_Fragment extends Fragment {
 
             }
 
+/*
+    private void updateIndicator(int position){
 
-    @Override
-    public void onStart(){
-        super.onStart();
-        listener = SignUpRef_DB.addSnapshotListener(new EventListener<DocumentSnapshot>() {
-            @Override
-            public void onEvent(DocumentSnapshot documentSnapshot , FirebaseFirestoreException error) {
-
-                if (error != null){
-                    Toast.makeText(getActivity(), "Error while loading!", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                if (documentSnapshot.exists()){
-                    Account_Info_Note note = documentSnapshot.toObject(Account_Info_Note.class);
-
-                    String LoanType = note.getMem_Loan_Type();
-                    double LoanBalance = note.getMem_Loan_Outstanding_Balance();
-                    double SavingsBalance = note.getMem_Savings_Balance();
-
-
-                    //String txtBalance = String.valueOf(LoanBalance);convert the intbalance into string
-                    HBinder.ViewLoanBalance.setText(String.valueOf(LoanBalance));
-                    HBinder.ViewSavingsBalance.setText(String.valueOf(SavingsBalance));
-                    HBinder.LoanType.setText(LoanType);
-
-                }
-            }
-        });
-    }
-
-    @Override
-    public void onStop(){
-        super.onStop();
-        listener.remove();
-    }
-
-
+        HBinder.indicatorVP.removeAllViews();
+        for (int i = 0; i < vp_adapter_loans_savings.getItemCount(); i++){
+            ImageView indicator = new ImageView(getActivity());
+            indicator.setImageResource(
+                    i == position ? R.drawable.selected_indicator : R.drawable.idle_selector_indicator
+            );
+            HBinder.indicatorVP.addView(indicator);
+        }
+    }*/
     @Override
     public void onDestroyView() {
         super.onDestroyView();
