@@ -86,6 +86,7 @@ public class MainActivity extends AppCompatActivity {
                         if (error != null) {
                             // Handle errors
                             System.err.println("Listen failed: " + error);
+
                         }
                         BadgeCounter = value.size();
                         BadgeDrawable badge = Homebinding.NavigationButtons.getOrCreateBadge(R.id.InboxNav);
