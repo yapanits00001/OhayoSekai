@@ -13,6 +13,7 @@ import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.text.style.ForegroundColorSpan;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -23,6 +24,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 import com.google.firebase.auth.FirebaseUser;
 
 public class LogInActivity extends AppCompatActivity {
@@ -108,6 +111,12 @@ public class LogInActivity extends AppCompatActivity {
                     LIBinder.progressBar.setVisibility(View.GONE);
                     return;
                 } else {
+                    if (!Patterns.EMAIL_ADDRESS.matcher(Click_email).matches()){
+                        LIBinder.txtEmail.setError("Please Enter a Valid Email");
+                        LIBinder.txtEmail.requestFocus();
+                        LIBinder.progressBar.setVisibility(View.GONE);
+                        return;
+                    }
                     if (TextUtils.isEmpty(Click_password)){
                         LIBinder.txtPassword.setError("Password cannot be empty!!");
                         LIBinder.txtPassword.requestFocus();
@@ -138,8 +147,19 @@ public class LogInActivity extends AppCompatActivity {
 
                                 } else {
                                     //shows log in faild if user doesnt met the requirements
-                                    Toast.makeText(LogInActivity.this, "Log-In Failed.",
-                                            Toast.LENGTH_SHORT).show();
+                                    try {
+                                        throw task.getException();
+                                    } catch (FirebaseAuthInvalidUserException e){
+                                        LIBinder.txtEmail.setError("User Does not Exist!");
+                                        LIBinder.txtEmail.requestFocus();
+                                        LIBinder.progressBar.setVisibility(View.GONE);
+                                    } catch (FirebaseAuthInvalidCredentialsException e){
+                                        LIBinder.txtEmail.setError("Wrong input Credentials!! kindly, check and re-enter.");
+                                        LIBinder.txtEmail.requestFocus();
+                                        LIBinder.progressBar.setVisibility(View.GONE);
+                                    } catch (Exception e) {
+                                        throw new RuntimeException(e);
+                                    }
                                     mAuth.signOut();
                                 }
                             }

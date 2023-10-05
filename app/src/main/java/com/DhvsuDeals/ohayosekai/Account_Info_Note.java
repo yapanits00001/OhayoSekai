@@ -1,16 +1,21 @@
 package com.DhvsuDeals.ohayosekai;
 
+import java.sql.Timestamp;
+
 public class Account_Info_Note {
 
     public Account_Info_Note(){
         //public no-arg constructor needed
     }
 
-    String Mem_ID, Mem_Email,Mem_Password, Mem_Name, Mem_Sex,  Mem_Loan_Type, Mem_Phone_Number, Mem_Dept_Inst, Mem_Stats_Employment;
+    String Mem_ID, Mem_EMP_ID, Mem_Email,Mem_Password, Mem_Name, Mem_Sex,  Mem_Loan_Type, Mem_Phone_Number, Mem_Dept_Inst, Mem_Stats_Employment;
     Double Mem_Loan_Outstanding_Balance, Mem_Savings_Balance;
 
-    public Account_Info_Note(String mem_ID, String mem_Email, String mem_Password, String mem_Name, String mem_Sex, String mem_Loan_Type, String mem_Phone_Number, String mem_Dept_Inst, String mem_Stats_Employment, Double mem_Loan_Outstanding_Balance, Double mem_Savings_Balance) {
+
+
+    public Account_Info_Note(String mem_ID, String mem_EMP_ID, String mem_Email, String mem_Password, String mem_Name, String mem_Sex, String mem_Loan_Type, String mem_Phone_Number, String mem_Dept_Inst, String mem_Stats_Employment, Double mem_Loan_Outstanding_Balance, Double mem_Savings_Balance) {
         Mem_ID = mem_ID;
+        Mem_EMP_ID = mem_EMP_ID;
         Mem_Email = mem_Email;
         Mem_Password = mem_Password;
         Mem_Name = mem_Name;
@@ -23,10 +28,13 @@ public class Account_Info_Note {
         Mem_Savings_Balance = mem_Savings_Balance;
     }
 
+
     public String getMem_ID() {
         return Mem_ID;
     }
-
+    public String getMem_EMP_ID() {
+        return Mem_EMP_ID;
+    }
     public String getMem_Email() {
         return Mem_Email;
     }

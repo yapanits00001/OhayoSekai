@@ -5,34 +5,117 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Toast;
 
 import com.DhvsuDeals.ohayosekai.databinding.ActivityLoanCostCalculatorBinding;
 
 public class LoanCostCalculatorActivity extends AppCompatActivity {
     ActivityLoanCostCalculatorBinding calculatorBinding;
+
+    String[] items = {"3", "6", "9", "12"};
+    ArrayAdapter<String> adapterItems;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         calculatorBinding = ActivityLoanCostCalculatorBinding.inflate(getLayoutInflater());
         setContentView(calculatorBinding.getRoot());
 
-        String LoanType = getIntent().getStringExtra("PassLoanType");
-        Long LoanTerm = getIntent().getLongExtra("PassLoanTermLimit", 0);
-        String btnApply = getIntent().getStringExtra("PassButton");
+        adapterItems = new ArrayAdapter<String>(this, R.layout.drop_down_item_design, items);
 
+        calculatorBinding.autoCompleteText.setAdapter(adapterItems);
 
-        calculatorBinding.CalLoanType.setText(LoanType);
-        calculatorBinding.CAlLoanTerm.setText(String.valueOf(LoanTerm));
-        calculatorBinding.btnApplyLoan.setText(btnApply);
-
-        calculatorBinding.btnApplyLoan.setOnClickListener(new View.OnClickListener() {
+        calculatorBinding.autoCompleteText.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
-            public void onClick(View v) {
-                Intent Go_App_Form = new Intent(getApplicationContext(), LoanApplicationFormActivity.class);
-                Go_App_Form.putExtra("PassLoanType", LoanType);
-                startActivity(Go_App_Form);
-                finish();
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String item = parent.getItemAtPosition(position).toString();
+                ChosenOne(item);
             }
         });
+
+
     }
+    public void ChosenOne(String items){
+        Double interest, BorrowMoney, loanOrigination, serviceFee, mutualFund, insurance, amountPayable, monthlyDue, amountReceivable;
+        BorrowMoney = Double.parseDouble(calculatorBinding.txtBorrowMoney.getText().toString());
+
+        switch (items){
+           case "3":
+               interest = .03 * BorrowMoney;
+               serviceFee = .015 * BorrowMoney;
+               mutualFund = .012 * BorrowMoney;
+               insurance = .01 * BorrowMoney;
+               loanOrigination = serviceFee + mutualFund + insurance;
+               amountPayable = BorrowMoney + interest;
+               monthlyDue = BorrowMoney/3;
+               amountReceivable = BorrowMoney - loanOrigination;
+
+               calculatorBinding.ViewTotalInterest.setText(String.valueOf(interest));
+               calculatorBinding.ViewtotalOrigination.setText(String.valueOf(loanOrigination));
+               calculatorBinding.ViewtotalServiceFee.setText(String.valueOf(serviceFee));
+               calculatorBinding.ViewtotalMutualFund.setText(String.valueOf(mutualFund));
+               calculatorBinding.ViewtotalInsurance.setText(String.valueOf(insurance));
+               calculatorBinding.ViewTotalAmountPayable.setText(String.valueOf(amountPayable));
+               calculatorBinding.ViewTotalMonthlyDue.setText(String.valueOf(monthlyDue));
+               calculatorBinding.ViewTotalAmountReceivable.setText(String.valueOf(amountReceivable));
+            case "6":
+                interest = .06 * BorrowMoney;
+                serviceFee = .015 * BorrowMoney;
+                mutualFund = .012 * BorrowMoney;
+                insurance = .01 * BorrowMoney;
+                loanOrigination = serviceFee + mutualFund + insurance;
+                amountPayable = BorrowMoney + interest;
+                monthlyDue = BorrowMoney/6;
+                amountReceivable = BorrowMoney - loanOrigination;
+
+                calculatorBinding.ViewTotalInterest.setText(String.valueOf(interest));
+                calculatorBinding.ViewtotalOrigination.setText(String.valueOf(loanOrigination));
+                calculatorBinding.ViewtotalServiceFee.setText(String.valueOf(serviceFee));
+                calculatorBinding.ViewtotalMutualFund.setText(String.valueOf(mutualFund));
+                calculatorBinding.ViewtotalInsurance.setText(String.valueOf(insurance));
+                calculatorBinding.ViewTotalAmountPayable.setText(String.valueOf(amountPayable));
+                calculatorBinding.ViewTotalMonthlyDue.setText(String.valueOf(monthlyDue));
+                calculatorBinding.ViewTotalAmountReceivable.setText(String.valueOf(amountReceivable));
+                break;
+            case "9":
+                interest = .09 * BorrowMoney;
+                serviceFee = .015 * BorrowMoney;
+                mutualFund = .012 * BorrowMoney;
+                insurance = .01 * BorrowMoney;
+                loanOrigination = serviceFee + mutualFund + insurance;
+                amountPayable = BorrowMoney + interest;
+                monthlyDue = BorrowMoney/9;
+                amountReceivable = BorrowMoney - loanOrigination;
+
+                calculatorBinding.ViewTotalInterest.setText(String.valueOf(interest));
+                calculatorBinding.ViewtotalOrigination.setText(String.valueOf(loanOrigination));
+                calculatorBinding.ViewtotalServiceFee.setText(String.valueOf(serviceFee));
+                calculatorBinding.ViewtotalMutualFund.setText(String.valueOf(mutualFund));
+                calculatorBinding.ViewtotalInsurance.setText(String.valueOf(insurance));
+                calculatorBinding.ViewTotalAmountPayable.setText(String.valueOf(amountPayable));
+                calculatorBinding.ViewTotalMonthlyDue.setText(String.valueOf(monthlyDue));
+                calculatorBinding.ViewTotalAmountReceivable.setText(String.valueOf(amountReceivable));
+                break;
+            case "12":
+                interest = .12 * BorrowMoney;
+                serviceFee = .015 * BorrowMoney;
+                mutualFund = .012 * BorrowMoney;
+                insurance = .01 * BorrowMoney;
+                loanOrigination = serviceFee + mutualFund + insurance;
+                amountPayable = BorrowMoney + interest;
+                monthlyDue = BorrowMoney/12;
+                amountReceivable = BorrowMoney - loanOrigination;
+                calculatorBinding.ViewTotalInterest.setText(String.valueOf(interest));
+                calculatorBinding.ViewtotalOrigination.setText(String.valueOf(loanOrigination));
+                calculatorBinding.ViewtotalServiceFee.setText(String.valueOf(serviceFee));
+                calculatorBinding.ViewtotalMutualFund.setText(String.valueOf(mutualFund));
+                calculatorBinding.ViewtotalInsurance.setText(String.valueOf(insurance));
+                calculatorBinding.ViewTotalAmountPayable.setText(String.valueOf(amountPayable));
+                calculatorBinding.ViewTotalMonthlyDue.setText(String.valueOf(monthlyDue));
+                calculatorBinding.ViewTotalAmountReceivable.setText(String.valueOf(amountReceivable));
+                break;
+       }
+    }
+
 }

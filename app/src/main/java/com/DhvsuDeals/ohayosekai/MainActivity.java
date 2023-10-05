@@ -150,7 +150,7 @@ public class MainActivity extends AppCompatActivity {
         }
         switch (position) {
             case 0:
-                replaceFragment(new Home_Fragment());
+                replaceFragment(new MemberHomeFragment());
                 break;
             case 1:
                 replaceFragment(new InboxFragment());

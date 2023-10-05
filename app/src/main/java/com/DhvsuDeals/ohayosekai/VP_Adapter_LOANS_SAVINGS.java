@@ -16,9 +16,9 @@ public class VP_Adapter_LOANS_SAVINGS extends FragmentStateAdapter {
     public Fragment createFragment(int position) {
 
         switch (position){
-            case 0: return new Loans_ViewFragment();
-            case 1: return new Savings_ViewFragment();
-            default: return new Loans_ViewFragment();
+            case 0: return new MemberHomeFragment();
+            case 1: return new Loans_ViewFragment();
+            default: return new MemberHomeFragment();
         }
     }
 

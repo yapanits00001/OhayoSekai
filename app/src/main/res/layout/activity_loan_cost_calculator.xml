@@ -34,8 +34,8 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/CrdLoanCalculator"
-            android:layout_width="304dp"
-            android:layout_height="384dp"
+            android:layout_width="340dp"
+            android:layout_height="400dp"
             android:layout_marginTop="180dp"
             android:layout_marginBottom="15dp"
             android:layout_gravity="center"
@@ -73,7 +73,7 @@
                         android:textSize="18sp" />
 
                     <EditText
-                        android:id="@+id/editTextText"
+                        android:id="@+id/txtBorrowMoney"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:layout_alignTop="@+id/CalLoanType"
@@ -84,19 +84,29 @@
                         android:inputType="text"
                         android:text="0" />
 
-                    <TextView
-                        android:id="@+id/CAlLoanTerm"
-                        android:layout_width="wrap_content"
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                        android:layout_width="150dp"
                         android:layout_height="wrap_content"
-                        android:layout_alignTop="@+id/LblLoanTerms"
-                        android:layout_marginStart="14dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="67dp"
                         android:layout_toEndOf="@+id/LblLoanTerms"
-                        android:hint="-------------"
+                        android:hint="Select Loan Terms"
                         android:textColor="#FFFFFF"
                         android:textColorHighlight="#FFFFFF"
                         android:textColorHint="#FFFFFF"
-                        android:textColorLink="#FFFFFF"
-                        android:textSize="15sp" />
+                        android:textColorLink="#FFFFFF">
+
+                        <AutoCompleteTextView
+                            android:id="@+id/autoCompleteText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="none" />
+
+
+                    </com.google.android.material.textfield.TextInputLayout>
 
                     <TextView
                         android:id="@+id/LblLoanTerms"
@@ -104,8 +114,8 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/CalLoanType"
                         android:layout_alignStart="@+id/CalLoanType"
-                        android:layout_marginStart="7dp"
-                        android:layout_marginTop="34dp"
+                        android:layout_marginStart="3dp"
+                        android:layout_marginTop="41dp"
                         android:text="Loan Term/Months"
                         android:textColor="#FFFFFF"
                         android:textColorHighlight="#FFFFFF"
@@ -113,15 +123,14 @@
                         android:textColorLink="#FFFFFF"
                         android:textSize="15sp" />
 
-
                     <TextView
                         android:id="@+id/ViewInterestPercent"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/LblLoanTerms"
                         android:layout_alignStart="@+id/LblLoanTerms"
-                        android:layout_marginStart="7dp"
-                        android:layout_marginTop="15dp"
+                        android:layout_marginStart="9dp"
+                        android:layout_marginTop="41dp"
                         android:hint="1"
                         android:textColor="#FFFFFF"
                         android:textColorHighlight="#FFFFFF"
@@ -345,8 +354,8 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/CalLoanType"
                         android:layout_alignStart="@+id/CalLoanType"
-                        android:layout_marginStart="7dp"
-                        android:layout_marginTop="200dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="235dp"
                         android:hint="Amount Payable ₱"
                         android:textColor="#FFFFFF"
                         android:textColorHighlight="#FFFFFF"
@@ -375,8 +384,8 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/LblAmountPayableLoan"
                         android:layout_alignStart="@+id/LblAmountPayableLoan"
-                        android:layout_marginStart="7dp"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginStart="14dp"
+                        android:layout_marginTop="6dp"
                         android:hint="Monthly Due ₱"
                         android:textColor="#FFFFFF"
                         android:textColorHighlight="#FFFFFF"
@@ -406,7 +415,7 @@
                         android:layout_below="@+id/CalLoanType"
                         android:layout_alignStart="@+id/CalLoanType"
                         android:layout_marginStart="2dp"
-                        android:layout_marginTop="270dp"
+                        android:layout_marginTop="302dp"
                         android:hint="Amount Receivable ₱"
                         android:textColor="#FFFFFF"
                         android:textColorHighlight="#FFFFFF"
