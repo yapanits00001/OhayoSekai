@@ -140,7 +140,7 @@ public class RegisterActivity extends AppCompatActivity {
                                                     if (task.isSuccessful()){
 
                                                         User_ID = mAuth.getCurrentUser().getUid();//get the userUID on the firestore to be used as an user ID
-                                                        DocumentReference SignUpRef_DB = FirebaseFirestore.getInstance().collection("Uses_ACCS_Information").document(User_ID);
+                                                        DocumentReference SignUpRef_DB = FirebaseFirestore.getInstance().collection("Members_Collections").document(User_ID);
                                                         Map<String, Object> SaveUser = new HashMap<>();
                                                         SaveUser.put("Mem_ID", MemID);
                                                         SaveUser.put("Mem_Name", MemName);

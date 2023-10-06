@@ -19,7 +19,7 @@ import com.google.firebase.firestore.ListenerRegistration;
 public class LoanApplicationFormActivity extends AppCompatActivity {
     private ActivityLoanApplicationFormBinding LAFormBinding;
     private String User_ID = FirebaseAuth.getInstance().getCurrentUser().getUid();//get the userUID on the firestore to be used as an user ID
-    private DocumentReference SignUpRef_DB = FirebaseFirestore.getInstance().document("Uses_ACCS_Information/" + User_ID);
+    private DocumentReference SignUpRef_DB = FirebaseFirestore.getInstance().document("Members_Collections/" + User_ID);
     private ListenerRegistration listener;
 
     @Override

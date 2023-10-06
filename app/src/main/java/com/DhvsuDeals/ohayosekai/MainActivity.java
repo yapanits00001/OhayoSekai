@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth Auth;
     private FirebaseUser User;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private ActivityMainBinding Homebinding;
+    private ActivityMainBinding MainBinding;
     VP_Adapter_LOANS_SAVINGS vp_adapter_loans_savings;
     int BadgeCounter;
 
@@ -61,8 +61,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Homebinding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(Homebinding.getRoot());
+        MainBinding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(MainBinding.getRoot());
 
 
 
@@ -73,66 +73,52 @@ public class MainActivity extends AppCompatActivity {
 
 
         vp_adapter_loans_savings = new VP_Adapter_LOANS_SAVINGS(MainActivity.this);
-        Homebinding.VPLoansSavings.setAdapter(vp_adapter_loans_savings);
+        MainBinding.VPLoansSavings.setAdapter(vp_adapter_loans_savings);
 
-        Homebinding.VPLoansSavings.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+        MainBinding.VPLoansSavings.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageSelected(int position) {
                 updateIndicator(position);
                 //start of notif badge statement
-                db.collection("SampleInbox").whereEqualTo("Status", false).addSnapshotListener(new EventListener<QuerySnapshot>() {
-                    @Override
-                    public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
-                        if (error != null) {
-                            // Handle errors
-                            System.err.println("Listen failed: " + error);
+                //code for the navigation buttons swipable
+                switch (position){
+                    case 0:
+                        MainBinding.NavigationButtons.setSelectedItemId(R.id.HomeNav);
+                        break;
+                    case 1:
+                        MainBinding.NavigationButtons.setSelectedItemId(R.id.InboxNav);
+                        break;
+                }
 
-                        }
-                        BadgeCounter = value.size();
-                        BadgeDrawable badge = Homebinding.NavigationButtons.getOrCreateBadge(R.id.InboxNav);
-                        badge.setBackgroundColor(Color.RED);
-                        badge.setBadgeTextColor(Color.WHITE);
-                        badge.setMaxCharacterCount(5);
-                        if (BadgeCounter == 0){
-                            badge.setVisible(false);
-                        } else {
-                            badge.setVisible(true);
-                            badge.setNumber(BadgeCounter);
-                        }
-
-                        //end notif badge statement
-
-                        //code for the navigation buttons swipable
-                        switch (position){
-                            case 0:
-                                Homebinding.NavigationButtons.setSelectedItemId(R.id.HomeNav);
-                                break;
-                            case 1:
-                                Homebinding.NavigationButtons.setSelectedItemId(R.id.InboxNav);
-                                badge.setVisible(false);
-                                break;
-                        }
-
-                        //code for the navigation buttons of fragments - end statement
-                    }
-                });
+                //code for the navigation buttons of fragments - end statement
             }
         });
 
-        Homebinding.VPLoansSavings.setPageTransformer(new PageTransformer());
+        MainBinding.VPLoansSavings.setPageTransformer(new PageTransformer());
 
         //pressing the home buttons
-        Homebinding.NavigationButtons.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+        MainBinding.NavigationButtons.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 if (item.getItemId() == R.id.HomeNav){
                     replaceFragment(new Home_Fragment());
-                    Homebinding.VPLoansSavings.setCurrentItem(0);
+                    MainBinding.VPLoansSavings.setCurrentItem(0);
                 } else if (item.getItemId() == R.id.InboxNav) {
                     replaceFragment(new InboxFragment());
-                    Homebinding.VPLoansSavings.setCurrentItem(1);
+                    MainBinding.VPLoansSavings.setCurrentItem(1);
                 }
                 return true;
+            }
+        });
+
+        MainBinding.btnLogOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+                Intent Go_LogIn = new Intent(getApplicationContext(), LogInActivity.class);
+                startActivity(Go_LogIn);
+                Auth.signOut();
+                finish();
             }
         });
 
@@ -140,13 +126,13 @@ public class MainActivity extends AppCompatActivity {
     }
     private void updateIndicator(int position){
 
-        Homebinding.indicatorVP.removeAllViews();
+        MainBinding.indicatorVP.removeAllViews();
         for (int i = 0; i < vp_adapter_loans_savings.getItemCount(); i++){
             ImageView indicator = new ImageView(MainActivity.this   );
             indicator.setImageResource(
                     i == position ? R.drawable.selected_indicator : R.drawable.idle_selector_indicator
             );
-            Homebinding.indicatorVP.addView(indicator);
+            MainBinding.indicatorVP.addView(indicator);
         }
         switch (position) {
             case 0:

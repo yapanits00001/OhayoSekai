@@ -8,5 +8,6 @@
     <color name="Cream">#FAEDCD</color>
     <color name="Creamy_Brown">#D4A373</color>
     <color name="my_custom_color">#0B6A31</color>
+    <color name="btn_my_custom_color">#328335</color>
 
 </resources>

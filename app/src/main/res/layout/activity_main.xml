@@ -13,8 +13,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="350dp"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
         <View
             android:id="@+id/logotop"
@@ -24,6 +24,28 @@
             android:background="@drawable/dclog">
 
         </View>
+
+        <ImageButton
+            android:id="@+id/btnProfile"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="130dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:background="@null"
+            android:src="@drawable/baseline_person_pin_24" />
+
+        <ImageButton
+            android:id="@+id/btnLogOut"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="10dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:background="@null"
+            android:src="@drawable/baseline_logout_24" />
+
+
+
+
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/VPLoansSavings"
@@ -55,7 +77,7 @@
     <FrameLayout
         android:id="@+id/MainFrame"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="340dp"
         android:layout_above="@+id/NavigationButtons"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true">

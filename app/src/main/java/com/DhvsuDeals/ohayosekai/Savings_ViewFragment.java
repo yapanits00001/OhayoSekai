@@ -26,7 +26,7 @@ public class Savings_ViewFragment extends Fragment {
     private FragmentSavingsViewBinding savingsViewBinding;
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     String User_ID = mAuth.getCurrentUser().getUid();//get the userUID on the firestore to be used as an user ID
-    DocumentReference SignUpRef_DB = FirebaseFirestore.getInstance().document("Uses_ACCS_Information/" + User_ID);
+    DocumentReference SignUpRef_DB = FirebaseFirestore.getInstance().document("Member_Collection/" + User_ID);
     private static final String KEY_BALANCE = "Mem-Savings_Balance";
     private ListenerRegistration listener;
 

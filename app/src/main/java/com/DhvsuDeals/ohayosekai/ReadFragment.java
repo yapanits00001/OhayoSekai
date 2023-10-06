@@ -34,7 +34,7 @@ import java.util.concurrent.Executor;
 public class ReadFragment extends Fragment {
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     String User_ID = mAuth.getCurrentUser().getUid();//get the userUID on the firestore to be used as an user ID
-    DocumentReference SignUpRef_DB = FirebaseFirestore.getInstance().document("Uses_ACCS_Information/" + User_ID);
+    DocumentReference SignUpRef_DB = FirebaseFirestore.getInstance().document("Members_Collection/" + User_ID);
     private static final String KEY_BALANCE = "Mem-LoanBalance", KEY_NAME = "Mem-Name";
     private FragmentReadBinding ReadBinder;
     private ListenerRegistration listener;

@@ -29,11 +29,6 @@ import com.google.firebase.firestore.ListenerRegistration;
 public class Home_Fragment extends Fragment {
 
     private FragmentHomeBinding HBinder;
-    String User_ID = FirebaseAuth.getInstance().getCurrentUser().getUid();//get the userUID on the firestore to be used as an user ID
-    DocumentReference SignUpRef_DB = FirebaseFirestore.getInstance().document("Uses_ACCS_Information/" + User_ID);
-    private ListenerRegistration listener;
-    VP_Adapter_LOANS_SAVINGS vp_adapter_loans_savings;
-
 
 
 
