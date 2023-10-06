@@ -88,7 +88,7 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View v) {
                 RegBinder.progressBar.setVisibility(View.VISIBLE);
                 String Click_email, Click_password, Click_ConfirmPass, MemName, MemID, MemPhoneNumber;
-                Double MemLoanBal, MemSavingsBal, defNumbie = 143.24;
+                Double MemLoanBal, MemSavingsBal, defNumbie = 0.0;
 
                 Click_email = String.valueOf(RegBinder.txtEmail.getText());
                 Click_password = String.valueOf(RegBinder.txtPassword.getText());

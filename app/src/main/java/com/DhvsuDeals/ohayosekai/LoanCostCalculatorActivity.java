@@ -2,6 +2,7 @@ package com.DhvsuDeals.ohayosekai;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -36,6 +37,7 @@ public class LoanCostCalculatorActivity extends AppCompatActivity {
 
 
     }
+    @SuppressLint("DefaultLocale")
     public void ChosenOne(String items){
         Double interest, BorrowMoney, loanOrigination, serviceFee, mutualFund, insurance, amountPayable, monthlyDue, amountReceivable;
         BorrowMoney = Double.parseDouble(calculatorBinding.txtBorrowMoney.getText().toString());
@@ -57,7 +59,7 @@ public class LoanCostCalculatorActivity extends AppCompatActivity {
                calculatorBinding.ViewtotalMutualFund.setText(String.valueOf(mutualFund));
                calculatorBinding.ViewtotalInsurance.setText(String.valueOf(insurance));
                calculatorBinding.ViewTotalAmountPayable.setText(String.valueOf(amountPayable));
-               calculatorBinding.ViewTotalMonthlyDue.setText(String.valueOf(monthlyDue));
+               calculatorBinding.ViewTotalMonthlyDue.setText(String.format("%.2f", monthlyDue));
                calculatorBinding.ViewTotalAmountReceivable.setText(String.valueOf(amountReceivable));
             case "6":
                 interest = .06 * BorrowMoney;
@@ -75,7 +77,7 @@ public class LoanCostCalculatorActivity extends AppCompatActivity {
                 calculatorBinding.ViewtotalMutualFund.setText(String.valueOf(mutualFund));
                 calculatorBinding.ViewtotalInsurance.setText(String.valueOf(insurance));
                 calculatorBinding.ViewTotalAmountPayable.setText(String.valueOf(amountPayable));
-                calculatorBinding.ViewTotalMonthlyDue.setText(String.valueOf(monthlyDue));
+                calculatorBinding.ViewTotalMonthlyDue.setText(String.format("%.2f", monthlyDue));
                 calculatorBinding.ViewTotalAmountReceivable.setText(String.valueOf(amountReceivable));
                 break;
             case "9":
@@ -94,7 +96,7 @@ public class LoanCostCalculatorActivity extends AppCompatActivity {
                 calculatorBinding.ViewtotalMutualFund.setText(String.valueOf(mutualFund));
                 calculatorBinding.ViewtotalInsurance.setText(String.valueOf(insurance));
                 calculatorBinding.ViewTotalAmountPayable.setText(String.valueOf(amountPayable));
-                calculatorBinding.ViewTotalMonthlyDue.setText(String.valueOf(monthlyDue));
+                calculatorBinding.ViewTotalMonthlyDue.setText(String.format("%.2f", monthlyDue));
                 calculatorBinding.ViewTotalAmountReceivable.setText(String.valueOf(amountReceivable));
                 break;
             case "12":
@@ -112,7 +114,7 @@ public class LoanCostCalculatorActivity extends AppCompatActivity {
                 calculatorBinding.ViewtotalMutualFund.setText(String.valueOf(mutualFund));
                 calculatorBinding.ViewtotalInsurance.setText(String.valueOf(insurance));
                 calculatorBinding.ViewTotalAmountPayable.setText(String.valueOf(amountPayable));
-                calculatorBinding.ViewTotalMonthlyDue.setText(String.valueOf(monthlyDue));
+                calculatorBinding.ViewTotalMonthlyDue.setText(String.format("%.2f", monthlyDue));
                 calculatorBinding.ViewTotalAmountReceivable.setText(String.valueOf(amountReceivable));
                 break;
        }

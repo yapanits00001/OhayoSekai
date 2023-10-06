@@ -29,7 +29,7 @@ public class Loans_ViewFragment extends Fragment {
     private FragmentLoansViewBinding loansViewBinding;
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     String User_ID = FirebaseAuth.getInstance().getCurrentUser().getUid();//get the userUID on the firestore to be used as an user ID
-    DocumentReference SignUpRef_DB = FirebaseFirestore.getInstance().document("Members_Collection/" + User_ID);
+    DocumentReference SignUpRef_DB = FirebaseFirestore.getInstance().document("Members_Collections/" + User_ID);
     private ListenerRegistration listener;
 
 

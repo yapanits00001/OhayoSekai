@@ -14,36 +14,40 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
-        <View
-            android:id="@+id/logotop"
-            android:layout_width="175dp"
-            android:layout_height="49dp"
-            android:layout_marginLeft="10dp"
-            android:background="@drawable/dclog">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-        </View>
+            <View
+                android:id="@+id/logotop"
+                android:layout_width="175dp"
+                android:layout_height="49dp"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/dclog">
 
-        <ImageButton
-            android:id="@+id/btnProfile"
-            android:layout_marginTop="5dp"
-            android:layout_marginStart="130dp"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:background="@null"
-            android:src="@drawable/baseline_person_pin_24" />
+            </View>
 
-        <ImageButton
-            android:id="@+id/btnLogOut"
-            android:layout_marginTop="5dp"
-            android:layout_marginStart="10dp"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:background="@null"
-            android:src="@drawable/baseline_logout_24" />
+            <ImageButton
+                android:id="@+id/btnProfile"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="130dp"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:background="@null"
+                android:src="@drawable/baseline_person_pin_24" />
 
-
+            <ImageButton
+                android:id="@+id/btnLogOut"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="10dp"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:background="@null"
+                android:src="@drawable/baseline_logout_24" />
+        </LinearLayout>
 
 
 

@@ -30,7 +30,7 @@ public class MemberHomeFragment extends Fragment {
     FragmentMemberHomeBinding memberHomeBinding;
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     String User_ID = FirebaseAuth.getInstance().getCurrentUser().getUid();//get the userUID on the firestore to be used as an user ID
-    DocumentReference Get_UserInfo = FirebaseFirestore.getInstance().document("Members_Collection/" + User_ID);
+        DocumentReference Get_UserInfo = FirebaseFirestore.getInstance().document("Members_Collections/" + User_ID);
     private ListenerRegistration listener;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
