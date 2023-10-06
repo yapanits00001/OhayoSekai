@@ -90,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                 }
 
+
                 //code for the navigation buttons of fragments - end statement
             }
         });
