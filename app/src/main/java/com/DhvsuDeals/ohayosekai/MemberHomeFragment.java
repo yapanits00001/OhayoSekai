@@ -9,8 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.DhvsuDeals.ohayosekai.databinding.FragmentHomeBinding;
 import com.DhvsuDeals.ohayosekai.databinding.FragmentMemberHomeBinding;
+import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -19,12 +19,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.ListenerRegistration;
 
-import org.checkerframework.checker.nullness.qual.NonNull;
-import org.checkerframework.checker.nullness.qual.Nullable;
-
-import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
+
 
 public class MemberHomeFragment extends Fragment {
     FragmentMemberHomeBinding memberHomeBinding;

@@ -22,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.DhvsuDeals.ohayosekai.databinding.ActivityRegisterBinding;
+import com.google.android.gms.common.data.AbstractDataBuffer;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
@@ -32,8 +33,11 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.SetOptions;
 
+import java.sql.Time;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.sql.Timestamp;
 
 public class RegisterActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
@@ -87,17 +91,21 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 RegBinder.progressBar.setVisibility(View.VISIBLE);
-                String Click_email, Click_password, Click_ConfirmPass, MemName, MemID, MemPhoneNumber;
-                Double MemLoanBal, MemSavingsBal, defNumbie = 0.0;
+                String Click_email, Click_password, Click_ConfirmPass, MemName, MemID, MemEmpID, MemSex , MemStatsEmployment, MemPhoneNumber, MemDeptInst;
+                Double MemMonthlySalary, defNumbie = 0.0;
 
                 Click_email = String.valueOf(RegBinder.txtEmail.getText());
                 Click_password = String.valueOf(RegBinder.txtPassword.getText());
                 Click_ConfirmPass = String.valueOf(RegBinder.txtConfirmPassword.getText());
                 MemName = getIntent().getStringExtra("PassMemName");
                 MemID = getIntent().getStringExtra("PassMemID");
-                MemLoanBal = getIntent().getDoubleExtra("PassLoanBalance", defNumbie);
-                MemSavingsBal = getIntent().getDoubleExtra("PassSavingsBalance", defNumbie);
+                MemEmpID = getIntent().getStringExtra("PassEmpID");
+                MemDeptInst = getIntent().getStringExtra("PassDeptInst");
                 MemPhoneNumber = getIntent().getStringExtra("PassPhoneNumber");
+                MemSex = getIntent().getStringExtra("PassSex");
+                MemMonthlySalary = getIntent().getDoubleExtra("PassMonthlySalary", defNumbie);
+                MemStatsEmployment = getIntent().getStringExtra("PassStatsEmp");
+
 
                 if (TextUtils.isEmpty(Click_email)){
                     RegBinder.txtEmail.setError("Email cannot be empty!!");
@@ -143,13 +151,13 @@ public class RegisterActivity extends AppCompatActivity {
                                                         DocumentReference SignUpRef_DB = FirebaseFirestore.getInstance().collection("Members_Collections").document(User_ID);
                                                         Map<String, Object> SaveUser = new HashMap<>();
                                                         SaveUser.put("Mem_ID", MemID);
-                                                        SaveUser.put("Mem_Name", MemName);
+                                                        SaveUser.put("Mem_EMP_ID", MemEmpID);
                                                         SaveUser.put("Mem_Email", Click_email);
-                                                        SaveUser.put("Mem_Password", Click_password);
-                                                        SaveUser.put("Mem_Loan_Outstanding_Balance", MemLoanBal);
-                                                        SaveUser.put("Mem_Savings_Balance", MemSavingsBal);
-                                                        SaveUser.put("Mem_Loan_Type", "Short Term Loan");
-                                                        SaveUser.put("Mem_Phone_Number", MemPhoneNumber);
+                                                        SaveUser.put("Mem_Password", MemDeptInst);
+                                                        SaveUser.put("Mem_Name", MemName);
+                                                        SaveUser.put("Mem_Sex", MemSex);
+                                                        SaveUser.put("Mem_Stats_Employment", MemStatsEmployment);
+                                                        SaveUser.put("Mem_Monthly_Salary", MemMonthlySalary);
 
                                                         SignUpRef_DB.set(SaveUser);
 

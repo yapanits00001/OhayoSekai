@@ -61,11 +61,6 @@ public class LoanApplicationFormActivity extends AppCompatActivity {
 
                     //String txtBalance = String.valueOf(LoanBalance);convert the intbalance into string
 
-                    LAFormBinding.formLoanType.setText(FormLoanType);
-                    LAFormBinding.formBorrowerName.setText(memName);
-                    LAFormBinding.formBorrowerSex.setText(memSex);
-                    LAFormBinding.formBorrowerDeptIns.setText(memDept_Inst);
-                    LAFormBinding.formBorrowerStatusEmployment.setText(memStatsEmp);
 
 
                 }

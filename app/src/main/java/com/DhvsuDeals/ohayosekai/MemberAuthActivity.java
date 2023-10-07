@@ -11,21 +11,16 @@ import android.widget.Toast;
 
 import com.DhvsuDeals.ohayosekai.databinding.ActivityMemberAuthBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.FirebaseException;
+import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.PhoneAuthCredential;
-import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.util.concurrent.TimeUnit;
+
 
 public class MemberAuthActivity extends AppCompatActivity {
      Long timeoutOTP = 60L;
@@ -79,21 +74,28 @@ public class MemberAuthActivity extends AppCompatActivity {
                                 MemBinder.progressBar.setVisibility(View.GONE);
                                 MemBinder.btnVerify.setVisibility(View.VISIBLE);
                             } else{
-                                String welcomeName = docSnapshot.getString("Mem_Name");
-                                Double memLoanBal = docSnapshot.getDouble("Mem_Outstanding_Balance");
-                                Double memSavingsBal = docSnapshot.getDouble("Mem_Savings");
-                                String memPhoneNum = docSnapshot.getString("Phone_Number");
+                                String memEmp_ID = docSnapshot.getString("Mem_EMP_ID");
+                                String welcomeName =docSnapshot.getString("Mem_Name");
+                                String memDepartmentInstitute = docSnapshot.getString("Mem_Dept_Inst");
+                                String memPhoneNum = docSnapshot.getString("Mem_Phone_Number");
+                                String memSex = docSnapshot.getString("Mem_Sex");
+                                Double memMonthSalary = docSnapshot.getDouble("Mem_Monthly_Salary");
+                                String memStatsEmployment = docSnapshot.getString("Mem_Stats_Employment");
+
 
 
                                 Intent Go_Register = new Intent(getApplicationContext(), RegisterActivity.class);
                                 Toast.makeText(MemberAuthActivity.this, "Welcome our dear Member " + welcomeName, Toast.LENGTH_SHORT).show();
 
                                 Go_Register.putExtra("PassMemID", searchRec);
+                                Go_Register.putExtra("PassEmpID", memEmp_ID);
                                 Go_Register.putExtra("PassMemName", welcomeName); //pass the values to the register
-                                Go_Register.putExtra("PassLoanBalance", memLoanBal);
-                                Go_Register.putExtra("PassSavingsBalance", memSavingsBal);
-                                Go_Register.putExtra("PassSavingsBalance", memSavingsBal);
+                                Go_Register.putExtra("PassDeptInst", memDepartmentInstitute);
+                                Go_Register.putExtra("PassSex", memSex);
+                                Go_Register.putExtra("PassMonthlySalary", memMonthSalary);
+                                Go_Register.putExtra("PassStatsEmp", memStatsEmployment);
                                 Go_Register.putExtra("PassPhoneNumber", memPhoneNum);
+
 
                                 startActivity(Go_Register);
                                 finish();

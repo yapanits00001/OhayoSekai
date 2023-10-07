@@ -133,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
             indicator.setImageResource(
                     i == position ? R.drawable.selected_indicator : R.drawable.idle_selector_indicator
             );
-            MainBinding.indicatorVP.addView(indicator);
+            MainBinding .indicatorVP.addView(indicator);
         }
         switch (position) {
             case 0:

@@ -7,341 +7,248 @@
     tools:context=".LoanApplicationFormActivity">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="60dp"
-            android:layout_gravity="center"
-            android:layout_marginBottom="10dp"
-            android:orientation="horizontal"
-            >
-
-            <TextView
-                android:id="@+id/formLoanType"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="SAMPLE LOAN"
-                android:textSize="26dp"
-                />
-        </LinearLayout>
-        <!--1stLinear Layout-->
-        <LinearLayout
-            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="10dp">
-
-            <LinearLayout
-                android:layout_width="250dp"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginLeft="5dp">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Borrower's Name "
-                    android:textSize="20dp"
-                    />
-                <EditText
-                    android:id="@+id/formBorrowerName"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Name"
-                    android:textSize="26dp"
-                    />
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginLeft="12dp">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Sex "
-                    android:textSize="20dp"
-                    />
-                <EditText
-                    android:id="@+id/formBorrowerSex"
-                    android:layout_width="120dp"
-                    android:layout_height="wrap_content"
-                    android:hint="SEX"
-                    android:textSize="26dp"
-                    />
-            </LinearLayout>
-        </LinearLayout>
-        <!--2ndtLinear Layout-->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="10dp"
-            >
+            android:orientation="vertical"
+            android:layout_marginStart="20dp">
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginLeft="4dp">
+                android:orientation="horizontal"
+                android:layout_gravity="center">
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Department/Institute "
-                    android:textSize="20dp"
-                    />
-                <EditText
-                    android:id="@+id/formBorrowerDept_Ins"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Dept/Inst."
+                    android:text="\nCo-Makers:\n"
                     android:textSize="26dp"
                     />
-
             </LinearLayout>
+            <!--1st co-maker-->
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginLeft="12dp">
+                android:orientation="horizontal"
+
+                android:layout_marginStart="5dp">
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Salary Per Month "
-                    android:textSize="20dp"
+                    android:text="1: \t"
+                    android:textSize="26dp"
                     />
-                <RelativeLayout
-                    android:layout_width="wrap_content"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="250dp"
                     android:layout_height="wrap_content">
-                    <TextView
-                        android:id="@+id/moneysign"
-                        android:layout_width="wrap_content"
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/txtComaker1Name"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="₱:"
-                        android:textSize="26dp"/>
-                    <EditText
-                        android:id="@+id/formBorrowerSsalary"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_toEndOf="@id/moneysign"
-                        android:layout_marginStart="5dp"
-                        android:hint="-------------"
-                        android:textSize="26dp"
-                        />
-                </RelativeLayout>
+                        android:hint="Search Co-maker Name"
+                        android:inputType="text"
+                        android:textColorHighlight="#106232"
+                        android:textColorLink="#106232" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+                <ImageButton
+                    android:id="@+id/searchCo_maker1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:tint="@color/btn_my_custom_color"
+                    android:src="@drawable/baseline_person_search_24"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:layout_margin="8dp"
+                    android:padding="4dp"
+                    />
             </LinearLayout>
-        </LinearLayout>
-        <!--3rdtLinear Layout-->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="10dp"
-            android:gravity="center"
-            >
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginLeft="5dp">
+                android:orientation="horizontal"
+                android:layout_marginStart="30dp"
+                >
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:tint="@color/btn_my_custom_color"
+                    android:src="@drawable/baseline_contact_phone_24"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:layout_margin="4dp"
+                    android:layout_gravity="center"
+                    />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/txtComaker1Contact"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Contact No."
+                        android:inputType="text"
+                        android:enabled="false"
+                        android:textColorHighlight="#106232"
+                        android:textColorLink="#106232" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginStart="30dp"
+                >
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:tint="@color/btn_my_custom_color"
+                    android:src="@drawable/baseline_location_on_24"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:layout_margin="4dp"
+                    android:layout_gravity="center"
+                    />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/txtComaker1Address"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Address"
+                        android:inputType="text"
+                        android:enabled="false"
+                        android:textColorHighlight="#106232"
+                        android:textColorLink="#106232" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+            <!--End-->
+
+            <!--1st co-maker-->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="20dp">
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Status of Employment "
-                    android:textSize="20dp"
-                    />
-                <EditText
-                    android:id="@+id/formBorrowerStatusEmployment"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:hint="Janitor"
+                    android:text="2: \t"
                     android:textSize="26dp"
                     />
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/txtComaker2Name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Search Co-maker Name"
+                        android:inputType="text"
+                        android:textColorHighlight="#106232"
+                        android:textColorLink="#106232" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+                <ImageButton
+                    android:id="@+id/searchCo_maker2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:tint="@color/btn_my_custom_color"
+                    android:src="@drawable/baseline_person_search_24"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:layout_margin="8dp"
+                    android:padding="4dp"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginStart="30dp"
+                >
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:tint="@color/btn_my_custom_color"
+                    android:src="@drawable/baseline_contact_phone_24"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:layout_margin="4dp"
+                    android:layout_gravity="center"
+                    />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/txtComaker2Contact"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Contact No."
+                        android:inputType="text"
+                        android:enabled="false"
+                        android:textColorHighlight="#106232"
+                        android:textColorLink="#106232" />
+
+                </com.google.android.material.textfield.TextInputLayout>
 
             </LinearLayout>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_gravity="center">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="\nCo-Makers:\n"
-                android:textSize="26dp"
-                />
-        </LinearLayout>
-        <!--1st co-maker-->
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="1: \t"
-                android:textSize="26dp"
-                />
-            <EditText
-                android:id="@+id/formNameCoMake01"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/comaker_name"
-                android:textSize="26dp"
-                />
-        </LinearLayout><LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/contact_no"
-            android:textSize="26dp"
-            />
-        <EditText
-            android:id="@+id/formContactCoMake01"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="xxxx-xxx-xxxx"
-            android:textSize="26dp"
-            />
-    </LinearLayout>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/address"
-                android:textSize="26dp"
-                />
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Address"
-                android:textSize="26dp"
-                />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_gravity="center"
-            >
-            <TextView
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Signature"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-            <!--ito ung kunware mag upload ng signature-->
-            <ImageView
-                android:id="@+id/imgSignatureCoMake01"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:srcCompat="@android:drawable/ic_menu_gallery" />
+                android:orientation="horizontal"
+                android:layout_marginStart="30dp"
+                >
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:tint="@color/btn_my_custom_color"
+                    android:src="@drawable/baseline_location_on_24"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:layout_margin="4dp"
+                    android:layout_gravity="center"
+                    />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/txtComaker2Address"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Address"
+                        android:inputType="text"
+                        android:enabled="false"
+                        android:textColorHighlight="#106232"
+                        android:textColorLink="#106232" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+            <!--End-->
+
+
+
+
+
         </LinearLayout>
 
-        <Button
-            android:id="@+id/btnformCoMake01"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/up_signature"
 
-            />
-        <!--End-->
 
-        <!--2nd co-maker-->
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="2: \t"
-                android:textSize="26dp"
-                />
-            <EditText
-                android:id="@+id/formNameCoMake02"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Comaker's Name"
-                android:textSize="26dp"
-                />
-        </LinearLayout><LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Contact No: \t"
-            android:textSize="26dp"
-            />
-        <EditText
-            android:id="@+id/formContactCoMake02"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="xxxx-xxx-xxx"
-            android:textSize="26dp"
-            />
-    </LinearLayout>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Address: \t"
-                android:textSize="26dp"
-                />
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Address"
-                android:textSize="26dp"
-                />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_gravity="center"
-            >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="*Signature" />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-            <!--ito ung kunware mag upload ng signature-->
-            <ImageView
-                android:id="@+id/imgSignatureCoMake02"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:srcCompat="@android:drawable/ic_menu_gallery" />
-        </LinearLayout>
-        <Button
-            android:id="@+id/btnformCoMake02"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Upload"
-            /><!--End-->
+
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -366,7 +273,6 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="10dp"
                 android:text="Cancel" />
-
 
         </RelativeLayout>
 

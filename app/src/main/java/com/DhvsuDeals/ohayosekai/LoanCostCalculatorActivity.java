@@ -35,6 +35,14 @@ public class LoanCostCalculatorActivity extends AppCompatActivity {
             }
         });
 
+        calculatorBinding.btnApplyLoan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent Go_Form = new Intent(getApplicationContext(), LoanApplicationFormActivity.class);
+                startActivity(Go_Form);
+                finish();
+            }
+        });
 
     }
     @SuppressLint("DefaultLocale")
