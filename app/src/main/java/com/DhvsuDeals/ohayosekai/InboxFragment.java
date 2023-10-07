@@ -61,14 +61,14 @@ public class InboxFragment extends Fragment {
 
 
 
-       /*  binding.RecycleInbox.setHasFixedSize(true);
+       /* binding.RecycleInbox.setHasFixedSize(true);
         binding.RecycleInbox.setLayoutManager(new LinearLayoutManager(getActivity())); */
 
         db = FirebaseFirestore.getInstance();
         notificationsArrayList = new ArrayList<Notifications>();
         notifsRecycleV_adapter = new NotifsRecycleV_Adapter(getActivity(), notificationsArrayList);
 
-       /*  binding.RecycleInbox.setAdapter(notifsRecycleV_adapter); */
+     /*   binding.RecycleInbox.setAdapter(notifsRecycleV_adapter);  */
 
         EventchangeListener();
 

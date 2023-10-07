@@ -5,16 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bgmain"
+    android:background="#156137"
     tools:context=".LoanCostCalculatorActivity">
 
-
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="match_parent"
-        android:layout_height="669dp"
-        android:background="@drawable/greenrec"
-        android:layout_gravity="bottom"/>
 
     <ImageView
         android:id="@+id/imageView3"
@@ -446,10 +439,10 @@
 
         <Button
             android:id="@+id/btnApplyLoan"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="300dp"
+            android:layout_height="60dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="-10dp"
             android:layout_marginBottom="10dp"
             android:text="Apply "
             android:textColor="#FFFFFF"

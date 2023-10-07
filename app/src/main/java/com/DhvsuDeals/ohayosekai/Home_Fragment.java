@@ -58,8 +58,8 @@ public class Home_Fragment extends Fragment {
         HBinder.VPLoansSavings.setPageTransformer(new PageTransformer());
 
 */
-     /*   //start of commodity loan button
-        HBinder.CommodityLoanbtn.setOnClickListener(new View.OnClickListener() {
+        //start of commodity loan button
+       /* HBinder.CommodityLoanbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Go_Forms.putExtra("PassLoanTermLimit", 36L);//number of months
@@ -68,9 +68,10 @@ public class Home_Fragment extends Fragment {
                 startActivity(Go_Forms);
 
             }
-        });//end for the button ofcommodity loan */
+        });//end for the button ofcommodity loan
 
-      /*  //start of short term loan button
+        //start of short term loan button
+        /*
         HBinder.ShortTermLoanbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,7 +82,7 @@ public class Home_Fragment extends Fragment {
 
 
             }
-        });//end of short term loan button
+        }); //end of short term loan button
 
         //start of the christmas loan button
         HBinder.ChristmasLoanbtn.setOnClickListener(new View.OnClickListener() {
@@ -104,9 +105,9 @@ public class Home_Fragment extends Fragment {
                 Go_Forms.putExtra("PassButton", "Apply Advance Mid-Year Loan");//passing the label for button
                 startActivity(Go_Forms);
             }
-        });//end of the advanced mid year loan button  */
+        });//end of the advanced mid year loan button
 
-            }
+            }*/
 
 /*
     private void updateIndicator(int position){
@@ -120,10 +121,10 @@ public class Home_Fragment extends Fragment {
             HBinder.indicatorVP.addView(indicator);
         }
     }*/
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
+    //@Override
+   // public void onDestroyView() {
+   //     super.onDestroyView();
         // Nullify the binding object to avoid memory leaks
-        HBinder = null;
+   //     HBinder = null;
     }
 }

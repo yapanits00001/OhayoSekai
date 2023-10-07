@@ -102,14 +102,14 @@
         android:layout_marginBottom="20dp"
         android:layout_gravity="center | bottom">
 
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/NavigationButtons"
-            android:layout_width="350dp"
-            android:layout_height="77dp"
-            android:background="@drawable/bnav"
-            app:itemIconTint="#FFFFFF"
-            app:itemTextColor="#FFFFFF"
-            app:menu="@menu/nav_menu" />
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/NavigationButtons"
+        android:layout_width="350dp"
+        android:layout_height="77dp"
+        android:background="@drawable/bnav"
+        app:itemIconTint="#FFFFFF"
+        app:itemTextColor="#FFFFFF"
+        app:menu="@menu/nav_menu" />
 
     </FrameLayout>
 
