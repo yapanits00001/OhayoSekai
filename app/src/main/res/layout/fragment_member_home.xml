@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".MemberHomeFragment"
-    android:padding="5dp">
+    android:padding="10dp">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -15,7 +15,7 @@
         android:layout_marginBottom="15dp"
         app:cardCornerRadius="30dp">
 
-        <LinearLayout
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="249dp"
             android:background="@drawable/dcreditbanner1"
@@ -65,25 +65,22 @@
                     android:id="@+id/Member_Record"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
-                    android:layout_marginStart="121dp"
+                    android:layout_centerInParent="true"
                     android:layout_marginTop="16dp"
                     android:text="Member Record"
                     android:textColor="#FFFFFF"
                     android:textColorHighlight="#FFFFFF"
                     android:textColorLink="#FFFFFF"
-                    android:textSize="18sp" />
+                    android:textSize="25sp" />
 
                 <TextView
                     android:id="@+id/EmpID"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginStart="-230dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="16dp"
                     android:layout_marginTop="77dp"
-                    android:layout_marginBottom="-3dp"
-                    android:layout_toEndOf="@+id/Member_Record"
                     android:hint="Employee ID:"
                     android:textColor="#FFFFFF"
                     android:textColorHighlight="#FFFFFF"
@@ -96,10 +93,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/EmpID"
-                    android:layout_marginStart="-103dp"
-                    android:layout_marginTop="2dp"
-                    android:layout_marginBottom="-3dp"
-                    android:layout_toEndOf="@+id/EmpID"
+                    android:layout_marginTop="7dp"
+                    android:layout_marginStart="16dp"
                     android:hint="0000-0000"
                     android:textColor="#FFFFFF"
                     android:textColorHighlight="#FFFFFF"
@@ -112,11 +107,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/ViewEmployeeID"
-                    android:layout_alignStart="@+id/ViewEmployeeID"
-                    android:layout_marginStart="-7dp"
                     android:layout_marginTop="38dp"
-                    android:layout_marginBottom="-3dp"
-                    android:hint="Birth Date:"
+                    android:layout_marginStart="16dp"
+                    android:hint="Member ID"
                     android:textColor="#FFFFFF"
                     android:textColorHighlight="#FFFFFF"
                     android:textColorHint="#FFFFFF"
@@ -128,43 +121,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/MemBday"
-                    android:layout_alignStart="@+id/MemBday"
-                    android:layout_marginStart="-3dp"
                     android:layout_marginTop="2dp"
-                    android:layout_marginBottom="-3dp"
-                    android:hint="----"
-                    android:textColor="#FFFFFF"
-                    android:textColorHighlight="#FFFFFF"
-                    android:textColorHint="#FFFFFF"
-                    android:textColorLink="#FFFFFF"
-                    android:textSize="19sp" />
-
-                <TextView
-                    android:id="@+id/MemID"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/activeContainer"
-                    android:layout_alignStart="@+id/activeContainer"
-                    android:layout_marginStart="-7dp"
-                    android:layout_marginTop="38dp"
-                    android:layout_marginBottom="-3dp"
-                    android:hint="Member ID:"
-                    android:textColor="#FFFFFF"
-                    android:textColorHighlight="#FFFFFF"
-                    android:textColorHint="#FFFFFF"
-                    android:textColorLink="#FFFFFF"
-                    android:textSize="20sp" />
-
-                <TextView
-                    android:id="@+id/ViewMemID"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/MemID"
-                    android:layout_alignStart="@+id/MemID"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="3dp"
-                    android:layout_marginBottom="-3dp"
-                    android:hint="0000000"
+                    android:hint="2023000000"
                     android:textColor="#FFFFFF"
                     android:textColorHighlight="#FFFFFF"
                     android:textColorHint="#FFFFFF"
@@ -174,7 +133,7 @@
 
             </RelativeLayout>
 
-        </LinearLayout>
+        </FrameLayout>
 
     </androidx.cardview.widget.CardView>
 

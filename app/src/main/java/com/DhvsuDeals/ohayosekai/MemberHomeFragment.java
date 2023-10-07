@@ -58,7 +58,7 @@ public class MemberHomeFragment extends Fragment {
 
                     //String txtBalance = String.valueOf(LoanBalance);convert the intbalance into string
                     memberHomeBinding.ViewEmployeeID.setText((EMP_ID));
-                    memberHomeBinding.ViewMemID.setText(memID);
+            /*        memberHomeBinding.ViewMemID.setText(memID); */
 
                 }
             }

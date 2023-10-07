@@ -12,103 +12,104 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:gravity="center"
             android:orientation="vertical">
 
 
 
-            <View
-                android:id="@+id/rect3"
-                android:layout_width="337dp"
-                android:layout_height="57dp"
-                android:layout_gravity="center"
-                android:background="@drawable/savemoney_05_1"></View>
 
 
 
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="84dp"
+                android:background="@drawable/inblayout">
 
-            <GridLayout
-                android:layout_width="365dp"
-                android:layout_height="80dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp">
 
-                <ImageButton
-                    android:id="@+id/CommodityLoanbtn"
-                    android:layout_marginLeft="15dp"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:src="@drawable/commodity" />
+                <TextView
+                    android:id="@+id/inbname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="33dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Inbox"
+                    android:textColor="#FFFFFF"
+                    android:textColorHighlight="#FFFFFF"
+                    android:textColorLink="#FFFFFF"
+                    android:textSize="20sp" />
 
-                <ImageButton
-                    android:id="@+id/ShortTermLoanbtn"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:layout_marginLeft="5dp"
-                    android:src="@drawable/shortterm" />
-
-                <ImageButton
-                    android:id="@+id/ChristmasLoanbtn"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:layout_marginLeft="5dp"
-                    android:src="@drawable/christmasloan" />
+                <TextView
+                    android:id="@+id/inbname2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="33dp"
+                    android:layout_marginTop="35dp"
+                    android:text="View Your Personal Date"
+                    android:textColor="#FFFFFF"
+                    android:textColorHighlight="#FFFFFF"
+                    android:textColorLink="#FFFFFF"
+                    android:textSize="16sp"
+                    />
 
                 <ImageButton
-                    android:id="@+id/AdvanceMidyearLoanbtn"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:layout_marginLeft="5dp"
-                    android:src="@drawable/advancemidyear" />
+                    android:layout_width="22dp"
+                    android:layout_height="32dp"
+                    android:background="@drawable/r_arrow"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="140dp"/>
 
 
+            </FrameLayout>
 
 
-            </GridLayout>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="84dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/inblayout">
 
 
+                <TextView
+                    android:id="@+id/inbname1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="33dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Savings"
+                    android:textColor="#FFFFFF"
+                    android:textColorHighlight="#FFFFFF"
+                    android:textColorLink="#FFFFFF"
+                    android:textSize="20sp" />
 
-
-            <GridLayout
-                android:layout_width="365dp"
-                android:layout_height="80dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="15dp">
+                <TextView
+                    android:id="@+id/inbname3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="33dp"
+                    android:layout_marginTop="35dp"
+                    android:text="40,000"
+                    android:textColor="#FFFFFF"
+                    android:textColorHighlight="#FFFFFF"
+                    android:textColorLink="#FFFFFF"
+                    android:textSize="22sp"
+                    />
 
                 <ImageButton
-                    android:id="@+id/commodityloan1"
-                    android:layout_marginLeft="15dp"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:src="@drawable/commodity" />
-
-                <ImageButton
-                    android:id="@+id/shorttermloan1"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:layout_marginLeft="5dp"
-                    android:src="@drawable/shortterm" />
-
-                <ImageButton
-                    android:id="@+id/christmasloan1"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:layout_marginLeft="5dp"
-                    android:src="@drawable/christmasloan" />
-
-                <ImageButton
-                    android:id="@+id/advancemidyearloan1"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:layout_marginLeft="5dp"
-                    android:src="@drawable/advancemidyear" />
+                    android:layout_width="22dp"
+                    android:layout_height="32dp"
+                    android:background="@drawable/r_arrow"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="140dp"/>
 
 
+            </FrameLayout>
 
 
-            </GridLayout>
 
 
 

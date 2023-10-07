@@ -60,7 +60,7 @@ public class Loans_ViewFragment extends Fragment {
 
 
                     //String txtBalance = String.valueOf(LoanBalance);convert the intbalance into string
-                    loansViewBinding.LoanType.setText(LoanType);
+               /*     loansViewBinding.LoanType.setText(LoanType);  */
 
                 }
             }

@@ -58,7 +58,7 @@ public class Home_Fragment extends Fragment {
         HBinder.VPLoansSavings.setPageTransformer(new PageTransformer());
 
 */
-        //start of commodity loan button
+     /*   //start of commodity loan button
         HBinder.CommodityLoanbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -68,9 +68,9 @@ public class Home_Fragment extends Fragment {
                 startActivity(Go_Forms);
 
             }
-        });//end for the button ofcommodity loan
+        });//end for the button ofcommodity loan */
 
-        //start of short term loan button
+      /*  //start of short term loan button
         HBinder.ShortTermLoanbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -104,7 +104,7 @@ public class Home_Fragment extends Fragment {
                 Go_Forms.putExtra("PassButton", "Apply Advance Mid-Year Loan");//passing the label for button
                 startActivity(Go_Forms);
             }
-        });//end of the advanced mid year loan button
+        });//end of the advanced mid year loan button  */
 
             }
 
