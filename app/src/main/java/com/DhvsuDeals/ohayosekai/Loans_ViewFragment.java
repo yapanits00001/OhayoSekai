@@ -56,13 +56,18 @@ public class Loans_ViewFragment extends Fragment {
                 if (documentSnapshot.exists()){
                     Account_Info_Note note = documentSnapshot.toObject(Account_Info_Note.class);
 
-                    String LoanType = note.getMem_Loan_Type();
+                  /*       String LoanType = note.getMem_Loan_Type();
                     double LoanBalance = note.getMem_Loan_Outstanding_Balance();
-                    double SavingsBalance = note.getMem_Savings_Balance();
+                    double SavingsBalance = note.getMem_Savings_Balance(); */
 
 
-                    //String txtBalance = String.valueOf(LoanBalance);convert the intbalance into string
+               /*       //String txtBalance = String.valueOf(LoanBalance);convert the intbalance into string
+
                    /* loansViewBinding.ViewLoanBalance.setText(String.valueOf(LoanBalance));
+                    loansViewBinding.ViewSavingsBalance.setText(String.valueOf(SavingsBalance));
+                    loansViewBinding.LoanType.setText(LoanType); */
+   /*
+                  loansViewBinding.ViewLoanBalance.setText(String.valueOf(LoanBalance));
                     loansViewBinding.ViewSavingsBalance.setText(String.valueOf(SavingsBalance));
                     loansViewBinding.LoanType.setText(LoanType); */
 
